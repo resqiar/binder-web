@@ -1,4 +1,5 @@
 <script>
+	import IndexBody from '../components/body/IndexBody.svelte';
 	import IndexHeader from '../components/header/IndexHeader.svelte';
 </script>
 
@@ -7,4 +8,6 @@
 </svelte:head>
 
 <IndexHeader />
+
+<IndexBody />
 
