@@ -2,7 +2,7 @@
   "name": "binder",
   "version": "0.0.1",
   "scripts": {
-    "dev": "vite dev -p 3030",
+    "dev": "vite dev --port 3030",
     "build": "vite build",
     "package": "svelte-kit package",
     "preview": "vite preview",
