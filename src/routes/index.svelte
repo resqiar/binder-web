@@ -1,1 +1,10 @@
-<h1 class="text-2xl font-bold hover:underline">HELLO WORLD!</h1>
+<script>
+	import IndexHeader from '../components/header/IndexHeader.svelte';
+</script>
+
+<svelte:head>
+	<title>Binder</title>
+</svelte:head>
+
+<IndexHeader />
+
