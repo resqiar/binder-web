@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Dropzone Image */
+.s-2Nj14SOG90E0 {
+  border-color: inherit !important;
+  background: none !important;
+  color: inherit !important;
+}

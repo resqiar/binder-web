@@ -32,9 +32,10 @@
 {#if mounted}
 	<div class="py-2">
 		<label class="label flex" for="drag-image-input">
-			<span class="label-text">Optional Image (png, jpeg, and jpg)</span>
+			<span class="label-text">Image (png, jpeg, and jpg)</span>
 
 			{#if preview}
+				<!-- DISCARD IMAGE -->
 				<button
 					on:click={handleFilesRemove}
 					class="btn btn-ghost btn-sm flex items-center gap-2 normal-case"
@@ -56,16 +57,35 @@
 
 		{#if preview}
 			<div class="py-2 pb-8">
-				<img
-					src={preview}
-					alt="preview media"
-					class="h-[500px] w-full object-cover"
-					height="300"
-					width="300"
-				/>
+				<!-- IMAGE PREVIEW -->
+				<div class="relative">
+					<img
+						src={preview}
+						alt="preview media"
+						class="h-[500px] w-full object-cover"
+						height="300"
+						width="300"
+					/>
+					<label
+						for="my-modal"
+						class="modal-button absolute top-0 left-0 right-0 bottom-0 z-10 cursor-pointer"
+					/>
+				</div>
+			</div>
+
+			<!-- ZOOM IMAGE MODAL -->
+			<input type="checkbox" id="my-modal" class="modal-toggle" />
+			<div class="modal">
+				<div class="modal-box relative p-0">
+					<label for="my-modal" class="btn btn-circle btn-sm absolute right-2 top-2 shadow-xl"
+						>✕</label
+					>
+					<img src={preview} alt="fullscreen media" />
+				</div>
 			</div>
 		{/if}
 
+		<!-- DROP IMAGE ZONE -->
 		<Dropzone
 			id="drag-image-input"
 			containerClasses="cursor-pointer"
@@ -74,6 +94,7 @@
 			on:drop={handleFilesSelect}
 		/>
 
+		<!-- FILE NAME  -->
 		{#each accepted as item}
 			<p class="pt-4">{item.name}</p>
 		{/each}
