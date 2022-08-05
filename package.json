@@ -33,6 +33,7 @@
   },
   "type": "module",
   "dependencies": {
-    "daisyui": "^2.20.0"
+    "daisyui": "^2.20.0",
+    "svelte-file-dropzone": "^1.0.0-dev.1"
   }
 }
