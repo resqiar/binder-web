@@ -3,7 +3,7 @@
 </script>
 
 <main>
-	<div class="flex w-full justify-center px-12 py-8">
+	<div class="flex w-full justify-center py-8 lg:px-12">
 		<!-- Search Box -->
 		<SearchInput />
 	</div>

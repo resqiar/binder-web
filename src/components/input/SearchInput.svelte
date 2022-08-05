@@ -1,4 +1,4 @@
-<div class="form-control w-6/12">
+<div class="form-control w-full px-8 md:px-2 lg:w-6/12">
 	<input
 		type="text"
 		placeholder="Type id here"
