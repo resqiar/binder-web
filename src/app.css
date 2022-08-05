@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 /* Dropzone Image */
-.s-2Nj14SOG90E0 {
+.dropzone {
   border-color: inherit !important;
   background: none !important;
+}
+
+.dropzone p {
   color: inherit !important;
 }
