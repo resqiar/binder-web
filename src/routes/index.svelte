@@ -1,12 +1,10 @@
 <script lang="ts">
-	import MainDrawer from '../components/drawers/MainDrawer.svelte';
 	import { drawerData } from '../data/drawerData';
-
-	import IndexBody from '../components/body/IndexBody.svelte';
+	import MainDrawer from '../components/drawers/MainDrawer.svelte';
 	import IndexHeader from '../components/header/IndexHeader.svelte';
 
 	// the id of the active drawer
-	let activeDrawer = 0;
+	let activeDrawer = 1;
 
 	// handle drawer change when user click on different items.
 	function handleDrawerChange(i: number) {
@@ -26,5 +24,3 @@
 	<!-- DYNAMIC COMPONENT BODY -->
 	<svelte:component this={drawerData[activeDrawer].component} />
 </MainDrawer>
-
-<IndexBody />
