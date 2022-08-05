@@ -2,6 +2,7 @@
 	import type { DropzoneFile } from '../../types/dropzone';
 	import Dropzone from 'svelte-file-dropzone';
 	import { onMount } from 'svelte';
+	import { CreateExtImage } from '../../stores/createExtStore';
 
 	let mounted: boolean;
 	let accepted: DropzoneFile[] = [];
@@ -10,29 +11,40 @@
 	function handleFilesSelect(e: CustomEvent) {
 		const { acceptedFiles } = e.detail;
 		accepted = acceptedFiles;
+
+		// Update the store to contain current
+		// dropped image.
+		CreateExtImage.set([accepted[0]]);
 	}
 
 	function handleFilesRemove() {
 		accepted = [];
 		URL.revokeObjectURL(preview);
 		preview = '';
+
+		// Clear the store from the last image
+		// by setting it to empty array.
+		CreateExtImage.set([]);
 	}
 
 	$: if (accepted[0]) {
+		// Set preview url
 		const objectUrl = URL.createObjectURL(accepted[0]);
 		preview = objectUrl;
 	}
 
 	onMount(() => {
+		// Wait lifecycle to fully mounted before render
+		// the whole component's tree. this because
+		// svelte-file-dropzone still has issue w/SSR.
 		mounted = true;
-		return () => URL.revokeObjectURL(preview);
 	});
 </script>
 
 {#if mounted}
 	<div class="py-2">
 		<label class="label flex" for="drag-image-input">
-			<span class="label-text">Image (png, jpeg, and jpg)</span>
+			<span class="label-text">Optional Image (png, jpeg, and jpg)</span>
 
 			{#if preview}
 				<!-- DISCARD IMAGE -->
