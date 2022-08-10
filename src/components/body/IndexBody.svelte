@@ -33,9 +33,9 @@
 			<div class="lg:mt-4 mb-12 flex flex-cols md:flex-row flex-wrap gap-4 px-2 w-full">
 				<!-- ITEM DATA -->
 				{#each data as value}
-					<div
+					<a
+						href={`/ext/${value.id}`}
 						class="cursor-pointer hover:shadow-2xl image-full card w-full lg:w-96 shadow-md hover:-translate-y-2 transition-all"
-						on:click={() => (window.location.href = `/ext/${value.id}`)}
 					>
 						{#if value.image_url}
 							<figure>
@@ -53,7 +53,7 @@
 							<h2 class="card-title">{value.title}</h2>
 							<p>{value.description ?? 'No description'}</p>
 						</div>
-					</div>
+					</a>
 				{/each}
 			</div>
 		{:catch error}
