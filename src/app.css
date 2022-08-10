@@ -11,3 +11,8 @@
 .dropzone p {
   color: inherit !important;
 }
+
+/* Full Image Card Overlay */
+.card.image-full:before {
+  background-color: rgb(0, 0, 0);
+}

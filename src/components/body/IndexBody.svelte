@@ -4,7 +4,7 @@
 	import CardSkeleton from '../skeleton/CardSkeleton.svelte';
 
 	async function getData() {
-		const response = await fetch('http://localhost:5000/ext');
+		const response = await fetch(`${import.meta.env.VITE_SERVER}/ext`);
 
 		if (response.ok) {
 			const data: IExtension[] = await response.json();
@@ -30,22 +30,27 @@
 				<CardSkeleton />
 			{/each}
 		{:then data}
-			<div class="px-4 w-full">
+			<div class="lg:mt-4 mb-12 flex flex-cols md:flex-row flex-wrap gap-4 px-2 w-full">
 				<!-- ITEM DATA -->
 				{#each data as value}
 					<div
-						class="card w-full lg:w-96 bg-base-100 shadow-2xl border-slate-400 border border-solid"
+						class="cursor-pointer hover:shadow-2xl image-full card w-full lg:w-96 shadow-md hover:-translate-y-2 transition-all"
+						on:click={() => (window.location.href = `/ext/${value.id}`)}
 					>
 						{#if value.image_url}
 							<figure>
-								<img src={value.image_url} alt="a" />
+								<img
+									src={value.image_url}
+									alt={value.title}
+									class="max-h-[200px] w-full object-cover"
+									width="300"
+									height="200"
+								/>
 							</figure>
 						{/if}
 						<div class="card-body">
-							<div class="flex items-center gap-2">
-								<div class="badge badge-secondary">{value.id}</div>
-								<h2 class="card-title">{value.title}</h2>
-							</div>
+							<span class="badge font-bold">{value.id}</span>
+							<h2 class="card-title">{value.title}</h2>
 							<p>{value.description ?? 'No description'}</p>
 						</div>
 					</div>
