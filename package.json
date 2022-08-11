@@ -35,6 +35,7 @@
   "dependencies": {
     "daisyui": "^2.20.0",
     "imagekit-javascript": "^1.5.2",
+    "lodash.debounce": "^4.0.8",
     "svelte-file-dropzone": "^1.0.0-dev.1"
   }
 }
