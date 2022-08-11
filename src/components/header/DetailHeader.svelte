@@ -1,3 +1,7 @@
+<script>
+	import Logo from '../brand/Logo.svelte';
+</script>
+
 <div class="navbar bg-base-100 md:px-8">
 	<!-- LEFT -->
 	<div class="flex-none">
@@ -19,6 +23,6 @@
 
 	<!-- CENTER -->
 	<div class="flex-1 px-4 md:px-8">
-		<a href="/" class="text-xl normal-case">Binder</a>
+		<Logo />
 	</div>
 </div>

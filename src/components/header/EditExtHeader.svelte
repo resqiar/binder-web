@@ -2,6 +2,7 @@
 	import { ExtDesc, ExtID, ExtImage, ExtTitle } from '../../stores/extStore';
 	import type { DropzoneFile } from '../../types/dropzone';
 	import ImageKit from 'imagekit-javascript';
+	import Logo from '../brand/Logo.svelte';
 
 	let id: number | undefined;
 	let title: string | undefined;
@@ -98,7 +99,7 @@
 		<label
 			for="left-drawer"
 			aria-label="Open Drawer"
-			class="btn btn-square btn-ghost drawer-button"
+			class="btn btn-ghost btn-square drawer-button"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +119,7 @@
 
 	<!-- DASHBOARD -->
 	<div class="flex-1 px-4 md:px-8">
-		<a href="/" class="text-xl normal-case">Binder</a>
+		<Logo />
 	</div>
 
 	<div class="flex-none">

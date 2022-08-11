@@ -2,6 +2,7 @@
 	import type { DropzoneFile } from '../../types/dropzone';
 	import { ExtDesc, ExtImage, ExtTitle } from '../../stores/extStore';
 	import ImageKit from 'imagekit-javascript';
+	import Logo from '../brand/Logo.svelte';
 
 	let title: string | undefined;
 	let desc: string | undefined;
@@ -116,7 +117,7 @@
 
 	<!-- DASHBOARD -->
 	<div class="flex-1 px-4 md:px-8">
-		<a href="/" class="text-xl normal-case">Binder</a>
+		<Logo />
 	</div>
 
 	<div class="flex-none">
