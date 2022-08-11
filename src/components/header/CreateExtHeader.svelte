@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { DropzoneFile } from '../../types/dropzone';
-	import { CreateExtDesc, CreateExtImage, CreateExtTitle } from '../../stores/createExtStore';
+	import { ExtDesc, ExtImage, ExtTitle } from '../../stores/extStore';
 	import ImageKit from 'imagekit-javascript';
 
 	let title: string | undefined;
@@ -9,9 +9,9 @@
 
 	// ITEMS FROM OTHER COMPONENTS
 	// SAVED IN SVELTE_STORE.
-	CreateExtTitle.subscribe((value) => (title = value));
-	CreateExtDesc.subscribe((value) => (desc = value));
-	CreateExtImage.subscribe((value) => (image = value));
+	ExtTitle.subscribe((value) => (title = value));
+	ExtDesc.subscribe((value) => (desc = value));
+	ExtImage.subscribe((value) => (image = value));
 
 	// Confirmation modal state.
 	// use this bool to control modal state,

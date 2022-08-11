@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { CreateExtTitle } from '../../stores/createExtStore';
-
-	let titleInput: string | undefined;
-	$: CreateExtTitle.set(titleInput);
+	export let value: string;
+	export let disabled: boolean = false;
 </script>
 
 <div class="form-control">
@@ -23,11 +21,12 @@
 			</svg>
 		</span>
 		<input
-			bind:value={titleInput}
+			bind:value
 			type="text"
 			id="title-input"
 			placeholder="Title"
 			class="input input-bordered w-full"
+			{disabled}
 		/>
 	</label>
 </div>

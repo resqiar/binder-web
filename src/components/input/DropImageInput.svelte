@@ -1,37 +1,11 @@
 <script lang="ts">
-	import type { DropzoneFile } from '../../types/dropzone';
 	import Dropzone from 'svelte-file-dropzone';
 	import { onMount } from 'svelte';
-	import { CreateExtImage } from '../../stores/createExtStore';
+	import type { DropzoneFile } from 'src/types/dropzone';
 
 	let mounted: boolean;
-	let accepted: DropzoneFile[] = [];
-	let preview: string;
-
-	function handleFilesSelect(e: CustomEvent) {
-		const { acceptedFiles } = e.detail;
-		accepted = acceptedFiles;
-
-		// Update the store to contain current
-		// dropped image.
-		CreateExtImage.set([accepted[0]]);
-	}
-
-	function handleFilesRemove() {
-		accepted = [];
-		URL.revokeObjectURL(preview);
-		preview = '';
-
-		// Clear the store from the last image
-		// by setting it to empty array.
-		CreateExtImage.set([]);
-	}
-
-	$: if (accepted[0]) {
-		// Set preview url
-		const objectUrl = URL.createObjectURL(accepted[0]);
-		preview = objectUrl;
-	}
+	export let accepted: DropzoneFile[] = [];
+	export let preview: string;
 
 	onMount(() => {
 		// Wait lifecycle to fully mounted before render
@@ -48,10 +22,7 @@
 
 			{#if preview}
 				<!-- DISCARD IMAGE -->
-				<button
-					on:click={handleFilesRemove}
-					class="btn btn-ghost btn-sm flex items-center gap-2 normal-case"
-				>
+				<button on:click class="btn btn-ghost btn-sm flex items-center gap-2 normal-case">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="h-4 w-4"
@@ -103,7 +74,7 @@
 			containerClasses="cursor-pointer"
 			accept="image/png,image/jpg,image/jpeg"
 			multiple={false}
-			on:drop={handleFilesSelect}
+			on:drop
 		/>
 
 		<!-- FILE NAME  -->

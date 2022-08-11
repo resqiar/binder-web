@@ -2,7 +2,9 @@ import type { SvelteComponentTyped } from 'svelte';
 import IndexBody from '../components/body/IndexBody.svelte';
 import IndexHeader from '../components/header/IndexHeader.svelte';
 import CreateExtHeader from '../components/header/CreateExtHeader.svelte';
+import EditExtHeader from '../components/header/EditExtHeader.svelte';
 import CreateExtensionBody from '../components/body/CreateExtensionBody.svelte';
+import EditExtensionBody from '../components/body/EditExtensionBody.svelte';
 
 export interface IDrawerData {
 	id: number;
@@ -23,5 +25,11 @@ export const drawerData: IDrawerData[] = [
 		title: 'Create Extensions',
 		header: CreateExtHeader,
 		component: CreateExtensionBody
+	},
+	{
+		id: 2,
+		title: 'Edit Extensions',
+		header: EditExtHeader,
+		component: EditExtensionBody
 	}
 ];
