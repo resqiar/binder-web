@@ -1,3 +1,7 @@
+<script lang="ts">
+	export let value: string;
+</script>
+
 <div class="form-control w-full px-8 md:px-2 lg:w-6/12">
 	<div class="input-group">
 		<input
@@ -5,6 +9,8 @@
 			id="search-input"
 			placeholder="Search…"
 			class="input input-bordered w-full"
+			bind:value
+			on:keyup
 		/>
 		<button class="btn btn-square">
 			<svg

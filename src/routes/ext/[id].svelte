@@ -17,35 +17,46 @@
 <script lang="ts">
 	import DetailHeader from '../../components/header/DetailHeader.svelte';
 	import type { IExtDetail } from 'src/types/detail-ext';
+	import DetailBody from '../../components/body/DetailBody.svelte';
+
 	export let data: IExtDetail;
 	export let id: number;
 </script>
 
 <svelte:head>
-	<title>{data.title} | Binder</title>
+	<title>({id}) {data.title ?? '404 Not Found'} | Binder</title>
 	<meta name="description" content={data.description ?? ''} />
 </svelte:head>
 
 <!-- Detail Header -->
 <DetailHeader />
 
-<main class="flex items-center justify-center">
-	<div class="card mx-2 my-4 w-full bg-base-100 shadow-2xl lg:mt-10 lg:mb-8 lg:w-96">
-		{#if data.image_url}
-			<figure>
-				<img
-					src={data.image_url}
-					alt={data.title}
-					class="w-full object-cover"
-					width="300"
-					height="300"
-				/>
-			</figure>
-		{/if}
-		<div class="card-body">
-			<span class="badge font-bold">{id}</span>
-			<h2 class="card-title">{data.title}</h2>
-			<p>{data.description ?? 'No description'}</p>
+<!-- Detail Body -->
+{#if data.statusCode !== 404}
+	<DetailBody {data} />
+{:else}
+	<main class="flex w-full justify-center px-4 py-8">
+		<div class="alert alert-error shadow-lg lg:w-6/12">
+			<div class="flex w-full gap-4">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="h-5 w-5"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+					stroke-width="2"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+					/>
+				</svg>
+				<div class="flex flex-col">
+					Not Found!
+					<span>Check again your id and <a href="/" class="link">try again</a>.</span>
+				</div>
+			</div>
 		</div>
-	</div>
-</main>
+	</main>
+{/if}

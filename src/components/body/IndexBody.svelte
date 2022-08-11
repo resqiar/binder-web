@@ -15,12 +15,21 @@
 	}
 
 	let promise: Promise<IExtension[]> = getData();
+
+	// search input value
+	let searchInput: string;
+
+	function handleSearch(e: KeyboardEvent) {
+		if (e.key === 'Enter') {
+			window.location.href = `/ext/${searchInput}`;
+		}
+	}
 </script>
 
 <main class="lg:px-12">
 	<div class="flex w-full justify-center py-8 lg:px-12">
 		<!-- Search Box -->
-		<SearchInput />
+		<SearchInput bind:value={searchInput} on:keyup={handleSearch} />
 	</div>
 
 	<section class="flex flex-col items-center justify-evenly gap-8 px-2 md:flex-row">
