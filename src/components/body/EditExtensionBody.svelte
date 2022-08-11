@@ -102,6 +102,7 @@
 	}
 
 	$: ExtID.set(id);
+	$: if (id) handleFilesRemove();
 	$: ExtTitle.set(title);
 	$: ExtDesc.set(desc);
 
