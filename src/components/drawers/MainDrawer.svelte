@@ -23,7 +23,7 @@
 					<label
 						for="left-drawer"
 						aria-label="Close Drawer"
-						class="btn btn-circle btn-outline btn-sm drawer-button"
+						class="drawer-button btn btn-outline btn-circle btn-sm"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,9 @@
 				</div>
 
 				<p class="text-sm">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, autem!
+					Binder is a digital integration between handwriting and electronic data. An additional
+					data (extension) is stored in the database that has an ID, this ID can be used in Binder
+					physical products.
 				</p>
 			</div>
 
