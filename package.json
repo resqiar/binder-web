@@ -38,6 +38,7 @@
     "daisyui": "^2.20.0",
     "imagekit-javascript": "^1.5.2",
     "lodash.debounce": "^4.0.8",
+    "nprogress": "^0.2.0",
     "svelte-file-dropzone": "^1.0.0-dev.1"
   }
 }
