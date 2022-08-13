@@ -48,7 +48,8 @@
 				// Start uploading to imagekit
 				const result = await imagekit.upload({
 					file: image[0],
-					fileName: image[0].name
+					fileName: image[0].name,
+					folder: import.meta.env.VITE_NODE_ENV === 'production' ? 'live' : 'local'
 				});
 
 				// Bind result url to previous reference.
@@ -99,7 +100,7 @@
 		<label
 			for="left-drawer"
 			aria-label="Open Drawer"
-			class="btn btn-ghost btn-square drawer-button"
+			class="btn btn-square btn-ghost drawer-button"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

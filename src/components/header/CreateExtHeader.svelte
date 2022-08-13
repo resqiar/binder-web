@@ -46,7 +46,8 @@
 				// Start uploading to imagekit
 				const result = await imagekit.upload({
 					file: image[0],
-					fileName: image[0].name
+					fileName: image[0].name,
+					folder: import.meta.env.VITE_NODE_ENV === 'production' ? 'live' : 'local'
 				});
 
 				// Bind result url to previous reference.
