@@ -1,4 +1,4 @@
-<div class="w-full animate-pulse rounded-lg border border-slate-400 p-2 shadow-2xl lg:w-96">
+<div class="w-full animate-pulse rounded-lg p-2 shadow-2xl lg:w-96">
 	<div class="mb-4 flex h-48 items-center justify-center rounded bg-gray-300 dark:bg-gray-700">
 		<svg
 			class="h-12 w-12 text-gray-200 dark:text-gray-600"
