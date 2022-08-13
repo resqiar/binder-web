@@ -23,7 +23,7 @@
 	let error: string = '';
 
 	async function handleEditExt() {
-		if (!id || !title) return;
+		if (!id || !title || title.length < 3) return;
 
 		// reset error
 		error = '';
@@ -125,7 +125,7 @@
 
 	<div class="flex-none">
 		<!-- EDIT EXTENSION BUTTON -->
-		{#if title}
+		{#if title && title.length >= 3}
 			<button
 				on:click={() => (isModalOpen = true)}
 				class="btn btn-primary btn-sm mx-4 gap-2 normal-case"

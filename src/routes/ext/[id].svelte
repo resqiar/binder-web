@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	import type { LoadEvent } from '@sveltejs/kit';
-	export async function load({ params }: LoadEvent) {
+	export async function load({ params, fetch }: LoadEvent) {
 		const id = params.id;
 		const response = await fetch(`${import.meta.env.VITE_SERVER}/ext/${id}`);
 		const data = await response.json();

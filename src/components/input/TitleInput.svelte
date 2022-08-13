@@ -29,4 +29,8 @@
 			{disabled}
 		/>
 	</label>
+
+	<label class="label px-2" for="title-input">
+		<span class="label-text-alt">Title must be at least 3 chars</span>
+	</label>
 </div>
