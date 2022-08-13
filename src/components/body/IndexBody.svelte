@@ -19,17 +19,21 @@
 	// search input value
 	let searchInput: string;
 
-	function handleSearch(e: KeyboardEvent) {
+	function handleKeyUp(e: KeyboardEvent) {
 		if (e.key === 'Enter') {
-			window.location.href = `/ext/${searchInput}`;
+			handleSearch();
 		}
+	}
+
+	function handleSearch() {
+		window.location.href = `/ext/${searchInput}`;
 	}
 </script>
 
 <main class="lg:px-12">
 	<div class="flex w-full justify-center py-8 lg:px-12">
 		<!-- Search Box -->
-		<SearchInput bind:value={searchInput} on:keyup={handleSearch} />
+		<SearchInput on:click={handleSearch} bind:value={searchInput} on:keyup={handleKeyUp} />
 	</div>
 
 	<section class="flex flex-col items-center justify-evenly gap-8 px-2 md:flex-row">
@@ -60,7 +64,7 @@
 						<div class="card-body">
 							<span class="badge font-bold">{value.id}</span>
 							<h2 class="card-title">{value.title}</h2>
-							<p>{value.description ?? 'No description'}</p>
+							<p class="line-clamp-3">{value.description ?? 'No description'}</p>
 						</div>
 					</a>
 				{/each}
