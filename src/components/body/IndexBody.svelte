@@ -26,6 +26,7 @@
 	}
 
 	function handleSearch() {
+		if (!searchInput) return;
 		window.location.href = `/ext/${searchInput}`;
 	}
 </script>
