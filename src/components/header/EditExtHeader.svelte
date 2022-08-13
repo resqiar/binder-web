@@ -33,6 +33,7 @@
 
 		// keep ref to image url if any
 		let imageUrl: string | undefined = undefined;
+		let imageId: string | undefined = undefined;
 
 		if (image[0]) {
 			// Initialize ImageKit libs.
@@ -66,7 +67,7 @@
 		try {
 			// Create Extension POST to server
 			const updateExtUrl = `${import.meta.env.VITE_SERVER}/ext/update/${id}`;
-			await fetch(updateExtUrl, {
+			const response = await fetch(updateExtUrl, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -74,9 +75,14 @@
 				body: JSON.stringify({
 					title: title,
 					description: desc,
-					image_url: imageUrl
+					image_url: imageUrl,
+					image_id: imageId
 				})
 			});
+
+			const result = await response.json();
+			loading = false;
+			if (result.statusCode) return (error = result.message);
 
 			// close modal
 			isModalOpen = false;

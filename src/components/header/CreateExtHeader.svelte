@@ -31,6 +31,7 @@
 
 		// keep ref to image url if any
 		let imageUrl: string | undefined = undefined;
+		let imageId: string | undefined = undefined;
 
 		if (image[0]) {
 			// Initialize ImageKit libs.
@@ -50,7 +51,8 @@
 					folder: import.meta.env.VITE_NODE_ENV === 'production' ? 'live' : 'local'
 				});
 
-				// Bind result url to previous reference.
+				// Bind result to previous reference.
+				imageId = result.fileId;
 				imageUrl = result.url;
 			} catch (err: any) {
 				// Reset loading
@@ -72,11 +74,15 @@
 				body: JSON.stringify({
 					title: title,
 					description: desc,
-					image_url: imageUrl
+					image_url: imageUrl,
+					image_id: imageId
 				})
 			});
 
 			const result = await response.json();
+			loading = false;
+			if (result.statusCode) return (error = result.message);
+
 			isModalOpen = false;
 
 			// Redirect to the detail page
