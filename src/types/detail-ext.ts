@@ -1,6 +1,7 @@
 export interface IExtDetail {
   description: string | null;
   id: number;
+  image_id: string | null;
   image_url: string | null;
   title: string;
   created_at: string;
