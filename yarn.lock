@@ -957,7 +957,7 @@ file-entry-cache@^6.0.1:
   dependencies:
     flat-cache "^3.0.4"
 
-file-selector@^0.2.2:
+file-selector@^0.2.4:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/file-selector/-/file-selector-0.2.4.tgz#7b98286f9dbb9925f420130ea5ed0a69238d4d80"
   integrity sha512-ZDsQNbrv6qRi1YTDOEWzf5J2KjZ9KMI1Q2SGeTkCJmNNW25Jg4TW4UMcmoqcg4WrAyKRcpBXdbWRxkfrOzVRbA==
@@ -1821,12 +1821,12 @@ svelte-check@2.8.0:
     svelte-preprocess "^4.0.0"
     typescript "*"
 
-svelte-file-dropzone@1.0.0-dev.1:
-  version "1.0.0-dev.1"
-  resolved "https://registry.yarnpkg.com/svelte-file-dropzone/-/svelte-file-dropzone-1.0.0-dev.1.tgz#0d763880d34a1f860297fc4e87acda6058eeddb7"
-  integrity sha512-u0kxaUsgXiNBye0EzP+NlyA2/AlgtvtvmP6ywfDxBx8kRzld7Yeo34KIKTpD/R7qYy4YhqTu0OA1V0fwY1/IoQ==
+svelte-file-dropzone@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/svelte-file-dropzone/-/svelte-file-dropzone-1.0.0.tgz#5a2cf0747d90ddcdac6167ebf0b54f62dfc3c4fa"
+  integrity sha512-F2DN+wN2w7bKuUJFYQOFsdtTgaohQ/rNKau5m5n2l3LHJRRIccYS4wpq8f6dz/h5aSxYse3oRclmYdW6FWAfjw==
   dependencies:
-    file-selector "^0.2.2"
+    file-selector "^0.2.4"
 
 svelte-hmr@^0.14.12:
   version "0.14.12"
