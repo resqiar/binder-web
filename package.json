@@ -36,7 +36,7 @@
   },
   "type": "module",
   "dependencies": {
-    "daisyui": "2.20.0",
+    "daisyui": "2.24.0",
     "imagekit-javascript": "1.5.2",
     "lodash.debounce": "4.0.8",
     "nprogress": "0.2.0",
