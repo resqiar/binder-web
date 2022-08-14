@@ -1,6 +1,6 @@
 {
   "name": "binder",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite dev --port 3030",
     "build": "yarn run check && vite build",
