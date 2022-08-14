@@ -44,7 +44,7 @@
 				<CardSkeleton />
 			{/each}
 		{:then data}
-			<div class="lg:mt-4 mb-12 flex flex-cols md:flex-row flex-wrap gap-4 px-2 w-full">
+			<div class="lg:mt-4 mb-12 pb-20 flex flex-cols md:flex-row flex-wrap gap-4 px-2 w-full">
 				<!-- ITEM DATA -->
 				{#each data as value}
 					<a

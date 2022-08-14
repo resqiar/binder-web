@@ -106,7 +106,7 @@
 		<label
 			for="left-drawer"
 			aria-label="Open Drawer"
-			class="btn btn-square btn-ghost drawer-button"
+			class="btn btn-square btn-ghost drawer-button hidden md:flex"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

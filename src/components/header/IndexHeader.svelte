@@ -8,7 +8,7 @@
 		<label
 			for="left-drawer"
 			aria-label="Open Drawer"
-			class="btn btn-ghost btn-square drawer-button"
+			class="btn btn-ghost btn-square drawer-button hidden md:flex"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

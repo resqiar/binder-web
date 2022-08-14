@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { drawerData } from '../data/drawerData';
 	import MainDrawer from '../components/drawers/MainDrawer.svelte';
+	import BottomDrawer from '../components/drawers/BottomDrawer.svelte';
 
 	// the id of the active drawer
 	let activeDrawer = 0;
@@ -23,3 +24,6 @@
 	<!-- DYNAMIC COMPONENT BODY -->
 	<svelte:component this={drawerData[activeDrawer].component} />
 </MainDrawer>
+
+<!-- BOTTOM DRAWER (MOBILE ONLY) -->
+<BottomDrawer activeIndex={activeDrawer} {handleDrawerChange} />

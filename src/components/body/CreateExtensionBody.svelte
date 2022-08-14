@@ -47,7 +47,7 @@
 	<div class="flex w-full flex-col items-center py-4 px-4 lg:px-12">
 		<h1 class="text-2xl font-bold">Create New Extension!</h1>
 
-		<div class="flex w-full flex-col gap-4 py-8 lg:w-6/12">
+		<div class="flex w-full flex-col gap-4 py-8 pb-20 lg:w-6/12">
 			<!-- Title -->
 			<TitleInput bind:value={titleInput} />
 
