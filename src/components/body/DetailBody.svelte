@@ -34,7 +34,7 @@
 		<div class="card-body">
 			<span class="badge font-bold">{data.id}</span>
 			<h2 class="card-title">{data.title}</h2>
-			<p>{data.description ?? 'No description'}</p>
+			<p class="whitespace-pre-wrap">{data.description ?? 'No description'}</p>
 		</div>
 	</div>
 </main>
