@@ -21,7 +21,7 @@
 
 	<div class="card mx-2 my-4 w-full bg-base-100 shadow-2xl lg:mt-10 lg:w-96">
 		{#if data.image_url}
-			<figure>
+			<div class="relative">
 				<img
 					src={data.image_url}
 					alt={data.title}
@@ -29,7 +29,23 @@
 					width="300"
 					height="300"
 				/>
-			</figure>
+
+				<label
+					for="my-modal"
+					class="modal-button absolute top-0 left-0 right-0 bottom-0 z-10 cursor-pointer"
+				/>
+			</div>
+
+			<!-- ZOOM IMAGE MODAL -->
+			<input type="checkbox" id="my-modal" class="modal-toggle" />
+			<div class="modal">
+				<div class="modal-box relative p-0">
+					<label for="my-modal" class="btn btn-circle btn-sm absolute right-2 top-2 shadow-xl"
+						>✕</label
+					>
+					<img src={data.image_url} alt="fullscreen media" />
+				</div>
+			</div>
 		{/if}
 		<div class="card-body">
 			<span class="badge font-bold">{data.id}</span>
