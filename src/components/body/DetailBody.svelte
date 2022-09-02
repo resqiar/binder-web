@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { IExtDetail } from 'src/types/detail-ext';
-	import YtPlayer from '../misc/YTPlayer.svelte';
+	// import YtPlayer from '../misc/YTPlayer.svelte';
 	// import getYouTubeID from 'get-youtube-id';
 	// import { onMount } from 'svelte';
 
@@ -87,9 +87,9 @@
 		<!-- YOUTUBE PLAYER -->
 		<!-- SHOW ONLY WHEN URL VALID -->
 		{#if ytId}
-			<div class="pb-2">
-				<YtPlayer videoId={ytId} extend="h-[500px] w-full" />
-			</div>
+			<!-- <div class="pb-2"> -->
+			<!-- 	<YtPlayer videoId={ytId} extend="h-[500px] w-full" /> -->
+			<!-- </div> -->
 		{/if}
 
 		<div class="card-body">
