@@ -7,6 +7,8 @@
 
 	let player: any;
 
+	$: player && player.loadVideoById(videoId);
+
 	onMount(() => {
 		player = Player(player, {
 			videoId: videoId,
