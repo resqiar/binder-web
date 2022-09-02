@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { IExtDetail } from 'src/types/detail-ext';
 	import YtPlayer from '../misc/YTPlayer.svelte';
-	import getYouTubeID from 'get-youtube-id';
-	import { onMount } from 'svelte';
+	// import getYouTubeID from 'get-youtube-id';
+	// import { onMount } from 'svelte';
 
 	export let data: IExtDetail;
 
@@ -10,9 +10,9 @@
 	let ytId: string | null = null;
 
 	// If URL valid, it will return string, otherwise null
-	onMount(() => {
-		ytId = getYouTubeID(data.youtube_url ?? '');
-	});
+	// onMount(() => {
+	// 	ytId = getYouTubeID(data.youtube_url ?? '');
+	// });
 </script>
 
 <main class="flex flex-col-reverse items-center justify-center lg:flex-row lg:gap-12">
