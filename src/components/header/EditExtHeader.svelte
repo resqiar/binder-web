@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ExtDesc, ExtID, ExtImage, ExtTitle } from '../../stores/extStore';
+	import { ExtDesc, ExtID, ExtImage, ExtTitle, ExtYTUrl } from '../../stores/extStore';
 	import type { DropzoneFile } from '../../types/dropzone';
 	import ImageKit from 'imagekit-javascript';
 	import Logo from '../brand/Logo.svelte';
@@ -7,6 +7,7 @@
 	let id: number | undefined;
 	let title: string | undefined;
 	let desc: string | undefined;
+	let youtubeUrl: string | undefined;
 	let image: DropzoneFile[];
 
 	// ITEMS FROM OTHER COMPONENTS
@@ -15,6 +16,7 @@
 	ExtTitle.subscribe((value) => (title = value));
 	ExtDesc.subscribe((value) => (desc = value));
 	ExtImage.subscribe((value) => (image = value));
+	ExtYTUrl.subscribe((value) => (youtubeUrl = value));
 
 	// Confirmation modal state.
 	// use this bool to control modal state,
@@ -76,7 +78,8 @@
 					title: title,
 					description: desc,
 					image_url: imageUrl,
-					image_id: imageId
+					image_id: imageId,
+					youtube_url: youtubeUrl
 				})
 			});
 
