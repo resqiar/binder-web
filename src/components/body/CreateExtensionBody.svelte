@@ -1,13 +1,16 @@
 <script lang="ts">
 	import type { DropzoneFile } from '../../types/dropzone';
-	import { ExtDesc, ExtImage, ExtTitle } from '../../stores/extStore';
+	import { ExtDesc, ExtImage, ExtTitle, ExtYTUrl } from '../../stores/extStore';
 	import { onDestroy } from 'svelte';
 	import DescriptionInput from '../input/DescriptionInput.svelte';
 	import DropImageInput from '../input/DropImageInput.svelte';
 	import TitleInput from '../input/TitleInput.svelte';
+	import YoutubeInput from '../input/YoutubeInput.svelte';
 
 	let titleInput: string;
 	let descInput: string;
+
+	let youtubeInput: string;
 
 	let accepted: DropzoneFile[] = [];
 	let preview: string;
@@ -39,6 +42,7 @@
 
 	$: ExtTitle.set(titleInput);
 	$: ExtDesc.set(descInput);
+	$: ExtYTUrl.set(youtubeInput);
 
 	onDestroy(() => ExtImage.set([]));
 </script>
@@ -61,6 +65,9 @@
 				{accepted}
 				{preview}
 			/>
+
+			<!-- Youtube URL -->
+			<YoutubeInput bind:value={youtubeInput} />
 		</div>
 	</div>
 </main>
