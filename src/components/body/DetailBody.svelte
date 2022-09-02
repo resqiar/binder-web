@@ -84,7 +84,7 @@
 		<!-- SHOW ONLY WHEN URL VALID -->
 		{#if ytId}
 			<div class="pb-2">
-				<YtPlayer videoId={ytId} extend="h-[500px] w-full" />
+				<YtPlayer id={ytId} />
 			</div>
 		{/if}
 

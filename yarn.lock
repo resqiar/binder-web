@@ -1886,6 +1886,11 @@ svelte-preprocess@4.10.7, svelte-preprocess@^4.0.0:
     sorcery "^0.10.0"
     strip-indent "^3.0.0"
 
+svelte-youtube-embed@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/svelte-youtube-embed/-/svelte-youtube-embed-0.1.0.tgz#62da84b149f907f9501d40eb3fb61b036971e415"
+  integrity sha512-2vMAvdGDQ40EnZEayBhh8jnwXFZr5R7N0tpis9i14a14V3+B6sWmN9r53qfRjeLljvr+4Mu9LzVEbIvOhNVhZA==
+
 svelte@3.49.0:
   version "3.49.0"
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.49.0.tgz#5baee3c672306de1070c3b7888fc2204e36a4029"

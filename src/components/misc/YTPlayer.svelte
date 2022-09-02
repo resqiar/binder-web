@@ -1,20 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import Player from 'youtube-player';
-
-	export let videoId: string;
-	export let extend: string = '';
-
-	let player: any;
-
-	onMount(() => {
-		player = Player(player, {
-			videoId: videoId,
-			playerVars: {
-				autoplay: 0
-			}
-		});
-	});
+	import Youtube from 'svelte-youtube-embed';
+	export let id: string;
 </script>
 
-<div id="youtube-player" class={extend} bind:this={player} />
+<div class="yt-player-custom">
+	<Youtube {id} --height="500" />
+</div>
