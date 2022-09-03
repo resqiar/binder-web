@@ -1,18 +1,20 @@
 <script lang="ts">
 	import type { DropzoneFile } from '../../types/dropzone';
-	import { ExtDesc, ExtImage, ExtTitle } from '../../stores/extStore';
+	import { ExtDesc, ExtImage, ExtTitle, ExtYTUrl } from '../../stores/extStore';
 	import ImageKit from 'imagekit-javascript';
 	import Logo from '../brand/Logo.svelte';
 
 	let title: string | undefined;
 	let desc: string | undefined;
 	let image: DropzoneFile[];
+	let youtubeUrl: string | undefined;
 
 	// ITEMS FROM OTHER COMPONENTS
 	// SAVED IN SVELTE_STORE.
 	ExtTitle.subscribe((value) => (title = value));
 	ExtDesc.subscribe((value) => (desc = value));
 	ExtImage.subscribe((value) => (image = value));
+	ExtYTUrl.subscribe((value) => (youtubeUrl = value));
 
 	// Confirmation modal state.
 	// use this bool to control modal state,
@@ -75,7 +77,8 @@
 					title: title,
 					description: desc,
 					image_url: imageUrl,
-					image_id: imageId
+					image_id: imageId,
+					youtube_url: youtubeUrl
 				})
 			});
 
@@ -104,7 +107,7 @@
 		<label
 			for="left-drawer"
 			aria-label="Open Drawer"
-			class="btn btn-ghost btn-square drawer-button hidden md:flex"
+			class="btn btn-square btn-ghost drawer-button hidden md:flex"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

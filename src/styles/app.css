@@ -16,3 +16,16 @@
 .card.image-full:before {
   background-color: rgb(0, 0, 0);
 }
+
+.yt-player-custom img {
+  height: 500px !important;
+  object-fit: cover;
+}
+
+.yt-player-custom .video-title {
+  margin-top: 18px;
+}
+
+.yt-player-custom iframe {
+  height: 500px !important;
+}
