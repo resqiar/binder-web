@@ -1146,10 +1146,10 @@ ignore@^5.2.0:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.0.tgz#6d3bac8fa7fe0d45d9f9be7bac2fc279577e345a"
   integrity sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==
 
-imagekit-javascript@1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/imagekit-javascript/-/imagekit-javascript-1.5.2.tgz#d6b7b99771f5f120a442eaeda74dd1619c7433c4"
-  integrity sha512-qZquDA8vL4TGrn4VhKzzlnaDqPoYrn1Asrcfzfq0HvAy0w0P9jrPTl8foL6bPbvAGzx7Kj2P2M51HrOQKLX4IQ==
+imagekit-javascript@1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/imagekit-javascript/-/imagekit-javascript-1.5.4.tgz#0b95852fdb58a464a5e39affec827048867298f5"
+  integrity sha512-TPwiq8EkOCOzG02DvuAoo76pOKakutExGD3JScpOUTejpoVO1W6X0XvWHBWLJY9LWE5Yf+gE/RP1ZzCgAFT/UA==
 
 import-fresh@^3.0.0, import-fresh@^3.2.1:
   version "3.3.0"

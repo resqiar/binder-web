@@ -39,7 +39,7 @@
   "dependencies": {
     "daisyui": "2.24.0",
     "get-youtube-id": "^1.0.1",
-    "imagekit-javascript": "1.5.2",
+    "imagekit-javascript": "1.5.4",
     "lodash.debounce": "4.0.8",
     "nprogress": "0.2.0",
     "svelte-file-dropzone": "1.0.0",
