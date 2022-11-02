@@ -12,7 +12,7 @@
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "devDependencies": {
-    "@sveltejs/adapter-vercel": "1.0.0-next.80",
+    "@sveltejs/adapter-vercel": "1.0.0-next.78",
     "@sveltejs/kit": "next",
     "@tailwindcss/line-clamp": "0.4.2",
     "@types/lodash.debounce": "4.0.7",
