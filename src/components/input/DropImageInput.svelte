@@ -22,7 +22,7 @@
 
 			{#if preview}
 				<!-- DISCARD IMAGE -->
-				<button on:click class="btn btn-ghost btn-sm flex items-center gap-2 normal-case">
+				<button on:click class="btn-ghost btn-sm btn flex items-center gap-2 normal-case">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="h-4 w-4"
@@ -60,7 +60,7 @@
 			<input type="checkbox" id="my-modal" class="modal-toggle" />
 			<div class="modal">
 				<div class="modal-box relative p-0">
-					<label for="my-modal" class="btn btn-circle btn-sm absolute right-2 top-2 shadow-xl"
+					<label for="my-modal" class="btn-sm btn-circle btn absolute right-2 top-2 shadow-xl"
 						>✕</label
 					>
 					<img src={preview} alt="fullscreen media" />

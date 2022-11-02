@@ -30,7 +30,12 @@
 
 		{#if ytId}
 			<div>
-				<a href={data.youtube_url} target="_blank" class="btn mb-8 gap-2 px-2 text-sm normal-case">
+				<a
+					href={data.youtube_url}
+					target="_blank"
+					class="btn mb-8 gap-2 px-2 text-sm normal-case"
+					rel="noreferrer"
+				>
 					Open video in YouTube
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +77,7 @@
 			<input type="checkbox" id="my-modal" class="modal-toggle" />
 			<div class="modal">
 				<div class="modal-box relative p-0">
-					<label for="my-modal" class="btn btn-circle btn-sm absolute right-2 top-2 shadow-xl"
+					<label for="my-modal" class="btn-sm btn-circle btn absolute right-2 top-2 shadow-xl"
 						>✕</label
 					>
 					<img src={data.image_url} alt="fullscreen media" />

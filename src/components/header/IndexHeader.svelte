@@ -11,7 +11,7 @@
 		<label
 			for="left-drawer"
 			aria-label="Open Drawer"
-			class="btn btn-square btn-ghost drawer-button hidden md:flex"
+			class="btn-ghost drawer-button btn-square btn hidden md:flex"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@
 
 	<div class="flex-none">
 		<div class="dropdown-end dropdown">
-			<label tabindex="0" for="dropdown-menu" class="btn btn-ghost btn-circle">
+			<label tabindex="-1" for="dropdown-menu" class="btn-ghost btn-circle btn">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -51,11 +51,11 @@
 			</label>
 			<ul
 				id="dropdown-menu"
-				tabindex="0"
+				tabindex="-1"
 				class="dropdown-content menu rounded-box w-52 bg-base-100 shadow-2xl"
 			>
 				<li>
-					<a href="https://github.com/resqiar/binder" target="_blank">
+					<a href="https://github.com/resqiar/binder" target="_blank" rel="noreferrer">
 						<GithubIcon />
 						GitHub</a
 					>
