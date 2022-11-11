@@ -37,7 +37,7 @@
   },
   "type": "module",
   "dependencies": {
-    "daisyui": "2.36.1",
+    "daisyui": "2.39.1",
     "get-youtube-id": "^1.0.1",
     "imagekit-javascript": "1.5.4",
     "lodash.debounce": "4.0.8",
