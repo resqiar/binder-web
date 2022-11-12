@@ -1,1 +1,1 @@
-export const WEB_SEMVER = '1.2.0';
+export const WEB_SEMVER = '1.2.1';
