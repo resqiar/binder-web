@@ -30,9 +30,25 @@
   height: 500px !important;
 }
 
-/* Override Ace Editor Cursor */
+/* Override Ace Editor */
+.ace_editor {
+  border-radius: 12px; 
+}
+
+.ace_gutter {
+  padding-top: 12px;
+}
+
+.ace_layer {
+  margin-top: 12px;
+}
+
+.ace_gutter-active-line {
+  margin-top: 12px;
+}
+
 .normal-mode .ace_cursor {
-    opacity: 0.2 !important;
+    opacity: 0.3 !important;
     background: #fff !important;
     border: 1px #fff solid !important; 
 }
