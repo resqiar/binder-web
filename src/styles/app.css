@@ -29,3 +29,10 @@
 .yt-player-custom iframe {
   height: 500px !important;
 }
+
+/* Override Ace Editor Cursor */
+.normal-mode .ace_cursor {
+    opacity: 0.2 !important;
+    background: #fff !important;
+    border: 1px #fff solid !important; 
+}

@@ -2,6 +2,7 @@
 	import type { IExtDetail } from 'src/types/detail-ext';
 	import YtPlayer from '../misc/YTPlayer.svelte';
 	import getYouTubeID from 'get-youtube-id';
+	import CodeEditor from '../code-editor/CodeEditor.svelte';
 
 	export let data: IExtDetail;
 
@@ -9,6 +10,9 @@
 	let ytId: string | null = null;
 	// If URL valid, it will return string, otherwise null
 	$: ytId = getYouTubeID(data.youtube_url ?? '');
+
+	// code value inside code editor
+	let code = '';
 </script>
 
 <main class="flex flex-col-reverse items-center justify-center lg:flex-row lg:gap-12">
@@ -100,3 +104,10 @@
 		</div>
 	</div>
 </main>
+
+<!-- CODE EDITOR -->
+<div class="mx-8 mt-4 mb-8">
+	<div class="shadow-xl">
+		<CodeEditor value={code} width="75%" height="500px" />
+	</div>
+</div>
