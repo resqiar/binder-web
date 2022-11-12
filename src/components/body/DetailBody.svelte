@@ -12,7 +12,7 @@
 	$: ytId = getYouTubeID(data.youtube_url ?? '');
 
 	// code value inside code editor
-	let code = '';
+	let code = 'console.log("Hello World?"); // again?';
 </script>
 
 <main class="flex flex-col-reverse items-center justify-center lg:flex-row lg:gap-12">
@@ -105,9 +105,31 @@
 	</div>
 </main>
 
-<!-- CODE EDITOR -->
+<!-- CODE EDITOR SECTION -->
 <div class="mx-8 mt-4 mb-8">
-	<div class="shadow-xl">
-		<CodeEditor value={code} width="75%" height="500px" />
+	<div class="mx-2 mt-2 mb-8 w-7/12">
+		<!-- TITLE -->
+		<h1 class="my-2 text-2xl font-bold" id="playground">Playground</h1>
+		<!-- DESC -->
+		<p class="text-justify">
+			Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint
+			ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur
+			officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor
+		</p>
+	</div>
+
+	<!-- ACTUAL CODE EDITOR -->
+	<div class="flex flex-row gap-6">
+		<!-- LEFT SECTION -->
+		<div class="w-7/12 shadow-2xl">
+			<CodeEditor bind:value={code} height="500px" />
+		</div>
+
+		<!-- RIGHT SECTION -->
+		<div class="w-5/12 break-all">
+			<code class="font-['Courier'] font-bold">
+				{code}
+			</code>
+		</div>
 	</div>
 </div>

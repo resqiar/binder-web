@@ -27,5 +27,5 @@
 	keybindings="vim"
 	theme="terminal"
 	options={{ fontSize }}
-	{value}
+	bind:value
 />

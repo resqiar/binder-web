@@ -5,7 +5,7 @@
 <div class="navbar bg-base-100 md:px-8">
 	<!-- LEFT -->
 	<div class="flex-none">
-		<a href="/" class="btn btn-ghost">
+		<a href="/" class="btn-ghost btn">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="h-5 w-5"
@@ -24,5 +24,10 @@
 	<!-- CENTER -->
 	<div class="flex-1 px-4 md:px-8">
 		<Logo />
+	</div>
+
+	<!-- RIGHT -->
+	<div class="flex-none">
+		<a href="#playground" class="text-sm font-bold hover:underline">👿 Jump to playground</a>
 	</div>
 </div>
