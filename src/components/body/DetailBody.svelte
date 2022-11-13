@@ -12,7 +12,38 @@
 	$: ytId = getYouTubeID(data.youtube_url ?? '');
 
 	// code value inside code editor
-	let code = 'console.log("Hello World?"); // again?';
+	let code: string = 'console.log("Hello World?"); // again?';
+	// loading state
+	let loading: boolean = false;
+	// result code
+	let result: string = '';
+
+	async function requestResult() {
+		if (!code) return;
+
+		loading = true;
+
+		const response = await fetch(`${import.meta.env.VITE_SERVER}/code/run`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				code: code
+			})
+		});
+
+		// result from server
+		const res = await response.json();
+
+		if (!res.error) {
+			result = res.output;
+		} else {
+			console.log(res.message);
+		}
+
+		loading = false;
+	}
 </script>
 
 <main class="flex flex-col-reverse items-center justify-center lg:flex-row lg:gap-12">
@@ -138,7 +169,9 @@
 			</select>
 
 			<!-- RUN CODE BUTTON -->
-			<button class="btn btn-secondary ml-2">Run Code</button>
+			<button on:click={requestResult} class="btn btn-secondary ml-2 {loading ? 'loading' : ''}"
+				>Run Code</button
+			>
 		</div>
 	</div>
 
@@ -150,9 +183,9 @@
 		</div>
 
 		<!-- RIGHT SECTION -->
-		<div class="w-5/12 break-all">
+		<div class="w-5/12 break-all rounded-xl bg-[#000] px-8 py-5 shadow-2xl">
 			<code class="font-['Courier'] font-bold">
-				{code}
+				{result}
 			</code>
 		</div>
 	</div>
