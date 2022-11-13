@@ -81,7 +81,7 @@
 			<input type="checkbox" id="my-modal" class="modal-toggle" />
 			<div class="modal">
 				<div class="modal-box relative p-0">
-					<label for="my-modal" class="btn-sm btn-circle btn absolute right-2 top-2 shadow-xl"
+					<label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2 shadow-xl"
 						>✕</label
 					>
 					<img src={data.image_url} alt="fullscreen media" />
@@ -107,15 +107,39 @@
 
 <!-- CODE EDITOR SECTION -->
 <div class="mx-8 mt-4 mb-8">
-	<div class="mx-2 mt-2 mb-8 w-7/12">
-		<!-- TITLE -->
-		<h1 class="my-2 text-2xl font-bold" id="playground">Playground</h1>
-		<!-- DESC -->
-		<p class="text-justify">
-			Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint
-			ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur
-			officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor
-		</p>
+	<div class="flex flex-row">
+		<div class="mx-2 mt-2 mb-8 w-7/12">
+			<!-- TITLE -->
+			<h1 class="my-2 text-2xl font-bold" id="playground">Playground</h1>
+			<!-- DESC -->
+			<p class="text-justify">
+				Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint
+				ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur
+				officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate
+				dolor
+			</p>
+		</div>
+
+		<div class="flex-center ml-8 flex flex-row items-center gap-2 self-center">
+			<!-- ENABLE VIM -->
+			<div class="form-control">
+				<label class="label flex cursor-pointer flex-row gap-2">
+					<span class="label-text">Enable Vim</span>
+					<input type="checkbox" checked={true} class="checkbox-accent checkbox" />
+				</label>
+			</div>
+
+			<!-- SELECT LANGUAGE -->
+			<select class="select-bordered select">
+				<option disabled>Pick Language</option>
+				<option>JavaScript</option>
+				<option selected>TypeScript</option>
+				<option>C++</option>
+			</select>
+
+			<!-- RUN CODE BUTTON -->
+			<button class="btn btn-secondary ml-2">Run Code</button>
+		</div>
 	</div>
 
 	<!-- ACTUAL CODE EDITOR -->
