@@ -3,6 +3,7 @@
 	import YtPlayer from '../misc/YTPlayer.svelte';
 	import getYouTubeID from 'get-youtube-id';
 	import CodeEditor from '../code-editor/CodeEditor.svelte';
+	import { LANGS_SUPPORTED } from '../../types/langs';
 
 	export let data: IExtDetail;
 
@@ -11,15 +12,19 @@
 	// If URL valid, it will return string, otherwise null
 	$: ytId = getYouTubeID(data.youtube_url ?? '');
 
-	// code value inside code editor
+	/**
+	 * Code editor related states.
+	 * These are reactive state that will react whenever
+	 * the user makes any change.
+	 **/
 	let code: string = 'console.log("Hello World?"); // again?';
-	// loading state
+	let lang: string;
+	let enableVim: boolean = true;
 	let loading: boolean = false;
-	// result code
-	let result: string = '';
+	let result: string = ''; // result from server
 
 	async function requestResult() {
-		if (!code) return;
+		if (!code || !lang) return;
 
 		loading = true;
 
@@ -29,7 +34,8 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				code: code
+				code: code,
+				lang: lang
 			})
 		});
 
@@ -156,16 +162,18 @@
 			<div class="form-control">
 				<label class="label flex cursor-pointer flex-row gap-2">
 					<span class="label-text">Enable Vim</span>
-					<input type="checkbox" checked={true} class="checkbox-accent checkbox" />
+					<input type="checkbox" bind:checked={enableVim} class="checkbox-accent checkbox" />
 				</label>
 			</div>
 
 			<!-- SELECT LANGUAGE -->
-			<select class="select-bordered select">
-				<option disabled>Pick Language</option>
-				<option>JavaScript</option>
-				<option selected>TypeScript</option>
-				<option>C++</option>
+			<select bind:value={lang} class="select-bordered select">
+				<option disabled value="">Pick Language</option>
+				{#each LANGS_SUPPORTED as supported}
+					<option value={supported.lang} selected={lang === supported.lang}
+						>{supported.title}</option
+					>
+				{/each}
 			</select>
 
 			<!-- RUN CODE BUTTON -->
@@ -179,7 +187,7 @@
 	<div class="flex flex-row gap-6">
 		<!-- LEFT SECTION -->
 		<div class="max-h-[800px] min-h-[500px] w-7/12 shadow-2xl">
-			<CodeEditor bind:value={code} />
+			<CodeEditor bind:value={code} keybindings={enableVim ? 'vim' : null} />
 		</div>
 
 		<!-- RIGHT SECTION -->
