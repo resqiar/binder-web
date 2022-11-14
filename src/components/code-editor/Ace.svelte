@@ -100,6 +100,15 @@
 		resizeOnNextTick();
 	}
 
+	// Make the keybindings reactive with changes
+	$: if (editor) {
+		if (keybindings === 'vim') {
+			editor.setKeyboardHandler('ace/keyboard/' + keybindings);
+		} else {
+			editor.setKeyboardHandler('ace/keyboard/');
+		}
+	}
+
 	onMount(() => {
 		lang = lang || 'text';
 		theme = theme || 'terminal';
@@ -152,10 +161,6 @@
 			dispatch('input', content);
 			contentBackup = content;
 		});
-
-		if (keybindings != null) {
-			editor.setKeyboardHandler('ace/keyboard/' + keybindings);
-		}
 	}
 </script>
 
