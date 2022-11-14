@@ -39,7 +39,7 @@
 		if (!res.error) {
 			result = res.output;
 		} else {
-			console.log(res.message);
+			result = res.message;
 		}
 
 		loading = false;
@@ -112,7 +112,7 @@
 			<input type="checkbox" id="my-modal" class="modal-toggle" />
 			<div class="modal">
 				<div class="modal-box relative p-0">
-					<label for="my-modal" class="btn btn-sm btn-circle absolute right-2 top-2 shadow-xl"
+					<label for="my-modal" class="btn-sm btn-circle btn absolute right-2 top-2 shadow-xl"
 						>✕</label
 					>
 					<img src={data.image_url} alt="fullscreen media" />
@@ -151,7 +151,7 @@
 			</p>
 		</div>
 
-		<div class="flex-center ml-8 flex flex-row items-center gap-2 self-center">
+		<div class="flex-center ml-8 mb-8 flex flex-row items-center gap-2 self-end">
 			<!-- ENABLE VIM -->
 			<div class="form-control">
 				<label class="label flex cursor-pointer flex-row gap-2">
@@ -169,8 +169,8 @@
 			</select>
 
 			<!-- RUN CODE BUTTON -->
-			<button on:click={requestResult} class="btn btn-secondary ml-2 {loading ? 'loading' : ''}"
-				>Run Code</button
+			<button on:click={requestResult} class="btn-secondary btn ml-2 {loading ? 'loading' : ''}"
+				>{loading ? 'Compiling...' : 'Compile Code'}</button
 			>
 		</div>
 	</div>
@@ -178,15 +178,15 @@
 	<!-- ACTUAL CODE EDITOR -->
 	<div class="flex flex-row gap-6">
 		<!-- LEFT SECTION -->
-		<div class="w-7/12 shadow-2xl">
-			<CodeEditor bind:value={code} height="500px" />
+		<div class="max-h-[800px] min-h-[500px] w-7/12 shadow-2xl">
+			<CodeEditor bind:value={code} />
 		</div>
 
 		<!-- RIGHT SECTION -->
 		<div class="w-5/12 break-all rounded-xl bg-[#000] px-8 py-5 shadow-2xl">
-			<code class="font-['Courier'] font-bold">
+			<div class="whitespace-pre-wrap bg-transparent font-['Courier'] font-bold">
 				{result}
-			</code>
+			</div>
 		</div>
 	</div>
 </div>
