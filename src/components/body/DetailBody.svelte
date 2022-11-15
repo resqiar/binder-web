@@ -3,7 +3,7 @@
 	import YtPlayer from '../misc/YTPlayer.svelte';
 	import getYouTubeID from 'get-youtube-id';
 	import CodeEditor from '../code-editor/CodeEditor.svelte';
-	import { LANGS_SUPPORTED } from '../../types/langs';
+	import SelectLangInput from '../input/SelectLangInput.svelte';
 
 	export let data: IExtDetail;
 
@@ -17,8 +17,8 @@
 	 * These are reactive state that will react whenever
 	 * the user makes any change.
 	 **/
-	let code: string = 'console.log("Hello World?"); // again?';
-	let lang: string;
+	let code: string = data.code_text ?? '';
+	let lang: string = data.code_lang ?? '';
 	let enableVim: boolean = true;
 	let loading: boolean = false;
 	let result: string = ''; // result from server
@@ -167,14 +167,7 @@
 			</div>
 
 			<!-- SELECT LANGUAGE -->
-			<select bind:value={lang} class="select-bordered select">
-				<option disabled value="">Pick Language</option>
-				{#each LANGS_SUPPORTED as supported}
-					<option value={supported.lang} selected={lang === supported.lang}
-						>{supported.title}</option
-					>
-				{/each}
-			</select>
+			<SelectLangInput bind:lang />
 
 			<!-- RUN CODE BUTTON -->
 			<button on:click={requestResult} class="btn-secondary btn ml-2 {loading ? 'loading' : ''}"
