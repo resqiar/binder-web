@@ -150,10 +150,10 @@
 			<h1 class="my-2 text-2xl font-bold" id="playground">Playground</h1>
 			<!-- DESC -->
 			<p class="text-justify">
-				Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint
-				ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur
-				officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate
-				dolor
+				The code playground is provided to make it simple to test and run previously created code.
+				the default language will be chosen based on the parameters you have already saved. You
+				don't need to worry if you use Vim because this playground by default uses keybindings for
+				Vim.
 			</p>
 		</div>
 
