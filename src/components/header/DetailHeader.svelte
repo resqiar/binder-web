@@ -28,6 +28,6 @@
 
 	<!-- RIGHT -->
 	<div class="flex-none">
-		<a href="#playground" class="text-sm font-bold hover:underline">👿 Jump to playground</a>
+		<a href="#playground" class="mr-2 text-sm font-bold hover:underline">👿 Jump to playground</a>
 	</div>
 </div>

@@ -3,7 +3,7 @@
 	export let lang: string;
 </script>
 
-<select bind:value={lang} class="select-ghost select">
+<select bind:value={lang} class="select-ghost select select-sm md:select-md">
 	<option disabled value="">Pick Language</option>
 	{#each LANGS_SUPPORTED as supported}
 		<option value={supported.lang} selected={lang === supported.lang}>{supported.title}</option>
