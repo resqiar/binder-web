@@ -1,5 +1,13 @@
 <script lang="ts">
-	import { ExtDesc, ExtID, ExtImage, ExtTitle, ExtYTUrl } from '../../stores/extStore';
+	import {
+		ExtCodeInput,
+		ExtCodeLangInput,
+		ExtDesc,
+		ExtID,
+		ExtImage,
+		ExtTitle,
+		ExtYTUrl
+	} from '../../stores/extStore';
 	import type { DropzoneFile } from '../../types/dropzone';
 	import ImageKit from 'imagekit-javascript';
 	import Logo from '../brand/Logo.svelte';
@@ -9,6 +17,8 @@
 	let desc: string | undefined;
 	let youtubeUrl: string | undefined;
 	let image: DropzoneFile[];
+	let code: string | undefined;
+	let codeLang: string | undefined;
 
 	// ITEMS FROM OTHER COMPONENTS
 	// SAVED IN SVELTE_STORE.
@@ -17,6 +27,8 @@
 	ExtDesc.subscribe((value) => (desc = value));
 	ExtImage.subscribe((value) => (image = value));
 	ExtYTUrl.subscribe((value) => (youtubeUrl = value));
+	ExtCodeInput.subscribe((value) => (code = value));
+	ExtCodeLangInput.subscribe((value) => (codeLang = value));
 
 	// Confirmation modal state.
 	// use this bool to control modal state,
@@ -26,6 +38,10 @@
 
 	async function handleEditExt() {
 		if (!id || !title || title.length < 3) return;
+		// If the code is present but the codeLang is not,
+		// that means the user is either forget to select
+		// the language options or something wrong with the selector.
+		if (code && !codeLang) return (error = 'Please choose the language for the code');
 
 		// reset error
 		error = '';
@@ -79,7 +95,9 @@
 					description: desc,
 					image_url: imageUrl,
 					image_id: imageId,
-					youtube_url: youtubeUrl
+					youtube_url: youtubeUrl,
+					code_text: code,
+					code_lang: codeLang
 				})
 			});
 
@@ -109,7 +127,7 @@
 		<label
 			for="left-drawer"
 			aria-label="Open Drawer"
-			class="btn btn-square btn-ghost drawer-button hidden md:flex"
+			class="btn-ghost drawer-button btn-square btn hidden md:flex"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -137,7 +155,7 @@
 		{#if title && title.length >= 3}
 			<button
 				on:click={() => (isModalOpen = true)}
-				class="btn btn-primary btn-sm mx-4 gap-2 normal-case"
+				class="btn-primary btn-sm btn mx-4 gap-2 normal-case"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -184,8 +202,8 @@
 						</div>
 					{/if}
 					<div class="modal-action">
-						<button on:click={() => (isModalOpen = false)} class="btn btn-ghost">Wait, no!</button>
-						<button on:click={handleEditExt} class="btn btn-primary {loading ? 'loading' : ''}"
+						<button on:click={() => (isModalOpen = false)} class="btn-ghost btn">Wait, no!</button>
+						<button on:click={handleEditExt} class="btn-primary btn {loading ? 'loading' : ''}"
 							>Alright!</button
 						>
 					</div>

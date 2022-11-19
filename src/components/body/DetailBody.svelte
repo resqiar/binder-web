@@ -2,6 +2,8 @@
 	import type { IExtDetail } from 'src/types/detail-ext';
 	import YtPlayer from '../misc/YTPlayer.svelte';
 	import getYouTubeID from 'get-youtube-id';
+	import CodeEditor from '../code-editor/CodeEditor.svelte';
+	import SelectLangInput from '../input/SelectLangInput.svelte';
 
 	export let data: IExtDetail;
 
@@ -9,6 +11,45 @@
 	let ytId: string | null = null;
 	// If URL valid, it will return string, otherwise null
 	$: ytId = getYouTubeID(data.youtube_url ?? '');
+
+	/**
+	 * Code editor related states.
+	 * These are reactive state that will react whenever
+	 * the user makes any change.
+	 **/
+	let code: string = data.code_text ?? '';
+	let lang: string = data.code_lang ?? '';
+	let enableVim: boolean = true;
+	let loading: boolean = false;
+	let result: string = ''; // result from server
+
+	async function requestResult() {
+		if (!code || !lang) return;
+
+		loading = true;
+
+		const response = await fetch(`${import.meta.env.VITE_SERVER}/code/run`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				code: code,
+				lang: lang
+			})
+		});
+
+		// result from server
+		const res = await response.json();
+
+		if (!res.error) {
+			result = res.output;
+		} else {
+			result = res.message;
+		}
+
+		loading = false;
+	}
 </script>
 
 <main class="flex flex-col-reverse items-center justify-center lg:flex-row lg:gap-12">
@@ -100,3 +141,64 @@
 		</div>
 	</div>
 </main>
+
+{#if code}
+	<!-- CODE EDITOR SECTION -->
+	<div class="mt-4 mb-8 md:mx-8">
+		<div class="flex flex-col md:flex-row">
+			<div class="mx-6 mt-2 mb-8 md:mx-2 lg:w-7/12">
+				<!-- TITLE -->
+				<h1 class="my-2 text-2xl font-bold" id="playground">Playground</h1>
+				<!-- DESC -->
+				<p class="text-justify">
+					The code playground is provided to make it simple to test and run previously created code.
+					The default language will be chosen based on the parameters you have already saved. You
+					don't need to worry if you use Vim because this playground by default uses keybindings for
+					Vim.
+				</p>
+			</div>
+
+			<div
+				class="flex-center mb-8 flex flex-row items-center gap-2 self-center lg:ml-8 lg:self-end"
+			>
+				<!-- ENABLE VIM -->
+				<div class="form-control">
+					<label class="label flex cursor-pointer flex-row gap-2">
+						<span class="label-text text-xs md:text-base">Vim</span>
+						<input
+							type="checkbox"
+							bind:checked={enableVim}
+							class="checkbox-accent checkbox checkbox-sm md:checkbox-md"
+						/>
+					</label>
+				</div>
+
+				<!-- SELECT LANGUAGE -->
+				<SelectLangInput bind:lang />
+
+				<!-- RUN CODE BUTTON -->
+				<button
+					on:click={requestResult}
+					class="md:text-md btn-secondary btn-sm btn text-xs md:ml-2 md:btn-md {loading
+						? 'loading'
+						: ''}">{loading ? 'Compiling...' : 'Compile Code'}</button
+				>
+			</div>
+		</div>
+
+		<!-- ACTUAL CODE EDITOR -->
+		<div class="mx-2 flex flex-col gap-6 lg:flex-row">
+			<!-- LEFT SECTION -->
+			<div class="h-[600px] max-h-[800px] min-h-[600px] w-full shadow-2xl lg:w-7/12">
+				<CodeEditor bind:value={code} keybindings={enableVim ? 'vim' : null} />
+			</div>
+
+			<!-- RIGHT SECTION -->
+			<div class="min-h-[500px] break-all rounded-xl bg-[#000] px-8 py-5 shadow-2xl lg:w-5/12">
+				<div class="whitespace-pre-wrap bg-transparent font-['Courier'] font-bold">
+					{result}
+				</div>
+			</div>
+		</div>
+	</div>
+{/if}

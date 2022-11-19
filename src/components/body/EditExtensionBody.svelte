@@ -1,6 +1,14 @@
 <script lang="ts">
 	import type { DropzoneFile } from '../../types/dropzone';
-	import { ExtDesc, ExtID, ExtImage, ExtTitle, ExtYTUrl } from '../../stores/extStore';
+	import {
+		ExtCodeInput,
+		ExtCodeLangInput,
+		ExtDesc,
+		ExtID,
+		ExtImage,
+		ExtTitle,
+		ExtYTUrl
+	} from '../../stores/extStore';
 	import { onDestroy } from 'svelte';
 	import debounce from 'lodash.debounce';
 	import DescriptionInput from '../input/DescriptionInput.svelte';
@@ -8,6 +16,8 @@
 	import IdInput from '../input/IDInput.svelte';
 	import TitleInput from '../input/TitleInput.svelte';
 	import YoutubeInput from '../input/YoutubeInput.svelte';
+	import SelectLangInput from '../input/SelectLangInput.svelte';
+	import CodeEditor from '../code-editor/CodeEditor.svelte';
 
 	// ID OF THE EXTENSION
 	let id: number;
@@ -22,6 +32,11 @@
 	// LOADING & ERROR
 	let loading: boolean;
 	let error: string;
+
+	// user-defined code
+	let code: string;
+	// code language [js, ts, c++]
+	let lang: string;
 
 	async function getData() {
 		if (!id) return;
@@ -50,6 +65,12 @@
 			desc = response.description;
 			preview = response.image_url;
 			youtubeUrl = response.youtube_url;
+			code = response.code_text;
+
+			// Bind language choosen only if available
+			if (response.code_lang) {
+				lang = response.code_lang;
+			}
 		} catch (error: any) {
 			// Bind error to input
 			loading = false;
@@ -109,6 +130,8 @@
 	$: ExtTitle.set(title);
 	$: ExtDesc.set(desc);
 	$: ExtYTUrl.set(youtubeUrl);
+	$: ExtCodeInput.set(code);
+	$: ExtCodeLangInput.set(lang);
 
 	onDestroy(() => ExtImage.set([]));
 </script>
@@ -137,6 +160,25 @@
 
 			<!-- Youtube URL -->
 			<YoutubeInput bind:value={youtubeUrl} />
+
+			<!-- CODE INPUT SECTION -->
+			<div class="my-2">
+				<div class="form-control">
+					<label class="label" for="code-input">
+						<span class="label-text">Live Code</span>
+					</label>
+
+					<!-- SELECT LANGUAGE -->
+					<div class="my-2">
+						<SelectLangInput bind:lang />
+					</div>
+
+					<!-- Code Input -->
+					<label class="label px-2" for="code-input">
+						<CodeEditor bind:value={code} height="600px" keybindings={null} />
+					</label>
+				</div>
+			</div>
 		</div>
 	</div>
 </main>
