@@ -25,7 +25,7 @@
 	let preview: string;
 
 	// user-defined code
-	let code: string;
+	let code: string | undefined;
 	// code language [js, ts, c++]
 	let lang: string;
 
