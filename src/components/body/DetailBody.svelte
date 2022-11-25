@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { IExtDetail } from 'src/types/detail-ext';
 	import YtPlayer from '../misc/YTPlayer.svelte';
-	import getYouTubeID from 'get-youtube-id';
+	// import getYouTubeID from 'get-youtube-id';
 	import CodeEditor from '../code-editor/CodeEditor.svelte';
 	import SelectLangInput from '../input/SelectLangInput.svelte';
 
@@ -10,7 +10,7 @@
 	// Get youtube id from the given URL
 	let ytId: string | null = null;
 	// If URL valid, it will return string, otherwise null
-	$: ytId = getYouTubeID(data.youtube_url ?? '');
+	// $: ytId = getYouTubeID(data.youtube_url ?? '');
 
 	/**
 	 * Code editor related states.
