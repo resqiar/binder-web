@@ -17,7 +17,7 @@
 	let desc: string | undefined;
 	let youtubeUrl: string | undefined;
 	let image: DropzoneFile[];
-	let code: string | undefined;
+	let code: string | null | undefined;
 	let codeLang: string | undefined;
 
 	// ITEMS FROM OTHER COMPONENTS
@@ -96,7 +96,7 @@
 					image_url: imageUrl,
 					image_id: imageId,
 					youtube_url: youtubeUrl,
-					code_text: code,
+					code_text: code ? code : null,
 					code_lang: codeLang
 				})
 			});

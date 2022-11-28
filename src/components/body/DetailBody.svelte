@@ -17,7 +17,7 @@
 	 * These are reactive state that will react whenever
 	 * the user makes any change.
 	 **/
-	let code: string = data.code_text ?? '';
+	let code: string | null = data.code_text;
 	let lang: string = data.code_lang ?? '';
 	let enableVim: boolean = true;
 	let loading: boolean = false;
@@ -142,7 +142,10 @@
 	</div>
 </main>
 
-{#if code}
+<!-- IMPORTANT!: MUST BE CHECK IF NOT EQUAL TO NULL -->
+<!-- SHORTCUT LIKE if !code WONT WORK SINCE IT SPECIFICALLY TARGET NULL. -->
+<!-- OTHERWISE, THE EDITOR WILL DISAPPEAR IF THE USER MANUALLY "EMPTYING" THE FIELD -->
+{#if code !== null}
 	<!-- CODE EDITOR SECTION -->
 	<div class="mt-4 mb-8 md:mx-8">
 		<div class="flex flex-col md:flex-row">
