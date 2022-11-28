@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/env';
 	import type { IExtDetail } from 'src/types/detail-ext';
 	import YtPlayer from '../misc/YTPlayer.svelte';
 	import getYouTubeID from 'get-youtube-id';
@@ -10,7 +11,9 @@
 	// Get youtube id from the given URL
 	let ytId: string | null = null;
 	// If URL valid, it will return string, otherwise null
-	$: ytId = getYouTubeID(data.youtube_url ?? '');
+	$: if (browser) {
+		ytId = getYouTubeID(data.youtube_url ?? '');
+	}
 
 	/**
 	 * Code editor related states.
