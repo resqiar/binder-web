@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { browser } from '$app/env';
+	import { browser } from '$app/environment';
 	import type { IExtDetail } from 'src/types/detail-ext';
 	import YtPlayer from '../misc/YTPlayer.svelte';
 	import getYouTubeID from 'get-youtube-id';
