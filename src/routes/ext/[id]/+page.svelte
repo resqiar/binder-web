@@ -1,39 +1,30 @@
-<script context="module" lang="ts">
-	import type { LoadEvent } from '@sveltejs/kit';
-	export async function load({ params, fetch }: LoadEvent) {
-		const id = params.id;
-		const response = await fetch(`${import.meta.env.VITE_SERVER}/ext/${id}`);
-		const data = await response.json();
-
-		return {
-			props: {
-				data: data,
-				id: id
-			}
-		};
-	}
-</script>
-
 <script lang="ts">
-	import DetailHeader from '../../components/header/DetailHeader.svelte';
 	import type { IExtDetail } from 'src/types/detail-ext';
-	import DetailBody from '../../components/body/DetailBody.svelte';
+	import type { PageData } from './$types';
+	import DetailHeader from '../../../components/header/DetailHeader.svelte';
+	import DetailBody from '../../../components/body/DetailBody.svelte';
 
-	export let data: IExtDetail;
-	export let id: number;
+	/**
+	 * This data is coming from the SSR process (server),
+	 * As of 1.0, the data coming from the server is in single the type
+	 * of PageData so we need to get the actual EXT data inside.
+	 * @see https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707
+	 **/
+	export let data: PageData;
+	let ext: IExtDetail = data.data;
 </script>
 
 <svelte:head>
-	<title>({id}) {data.title ?? '404 Not Found'} | Binder</title>
-	<meta name="description" content={data.description ?? ''} />
+	<title>{ext.id ? `(${ext.id})` : ''} {ext.title ?? '404 Not Found'} | Binder</title>
+	<meta name="description" content={ext.description ?? ''} />
 </svelte:head>
 
 <!-- Detail Header -->
 <DetailHeader />
 
 <!-- Detail Body -->
-{#if data.statusCode !== 404}
-	<DetailBody {data} />
+{#if ext.statusCode !== 404}
+	<DetailBody data={ext} />
 {:else}
 	<main class="flex w-full justify-center px-4 py-8">
 		<div class="alert alert-error shadow-lg lg:w-6/12">
