@@ -1,12 +1,17 @@
 import type { IExtension } from '../types/extension';
 
 export async function getBatch(skip: number) {
-	const response = await fetch(`${import.meta.env.VITE_SERVER}/ext?skip=${skip}`);
+	try {
+		const url = `${import.meta.env.VITE_SERVER}/ext?skip=${skip}`;
+		const response = await fetch(url);
 
-	if (response.ok) {
+		if (!response.ok) {
+			throw new Error(`Request failed with the status code ${response.status}`);
+		}
+
 		const result: IExtension[] = await response.json();
 		return result;
-	} else {
-		throw new Error('500 Internal Server Error');
+	} catch (error) {
+		throw new Error(`Failed to Get Batch: ${error}`);
 	}
 }

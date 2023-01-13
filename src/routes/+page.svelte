@@ -9,10 +9,31 @@
 	import MainDrawer from '../components/drawers/MainDrawer.svelte';
 
 	let data: IExtension[] = [];
-	let page: number = 0;
-	let full: boolean = false;
 
+	/**
+	 * Page here is the state to keep track
+	 * of the current page of exts. The initial extensions
+	 * only contains 9 items, therefore this page state is
+	 * the paginations of the extensions took place.
+	 **/
+	let page: number = 0;
+
+	/**
+	 * State to keep track of whether the current pagination
+	 * is already full or not. When the state is "true",
+	 * the "Load More" button should be invisible.
+	 */
+	let loadMoreEmpty: boolean = false;
+
+	/**
+	 * The initialLoading is the loading when the
+	 * components is first mounted, and it only run once.
+	 **/
 	let initialLoading: boolean = true;
+	/**
+	 * The subsequent loading triggered by
+	 * the user who want to load more extensions.
+	 **/
 	let loadLoading: boolean = false;
 
 	let errorMessage: string | undefined;
@@ -30,9 +51,19 @@
 		errorMessage = undefined;
 		loadLoading = true;
 
+		/**
+		 * loadMoreExt is a function with the purpose of the getting a batch of extensions
+		 * with skip (pagination).
+		 *
+		 * It takes in an object with the following properties:
+		 * page: The current page number.
+		 * emptyCB: A callback function that called when the result is empty.
+		 * successCB: A callback function that called when success.
+		 * errorCB: A callback function that called when the function encounter error.
+		 **/
 		await loadMoreExt({
 			page: page,
-			emptyCB: () => (full = true),
+			emptyCB: () => (loadMoreEmpty = true),
 			successCB: (result: IExtension[]) => {
 				result.forEach((value) => {
 					data = [...data, value];
@@ -59,12 +90,11 @@
 
 	<!-- BODY -->
 	<main>
-		<IndexBody {data} {initialLoading} {loadLoading} loadMoreEmpty={full} {handleLoadMore} />
+		<IndexBody {data} {initialLoading} {loadLoading} {loadMoreEmpty} {handleLoadMore} />
 	</main>
 
 	<!-- DEDICATED ERROR ALERT -->
 	{#if errorMessage}
-		<!-- ERROR ALERT -->
 		<div class="-mt-[100px] flex w-full justify-center py-4 px-8">
 			<div class="alert alert-error shadow-lg lg:w-6/12">
 				<div>

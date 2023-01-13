@@ -3,14 +3,21 @@
 	import SearchInput from '../input/SearchInput.svelte';
 	import CardSkeleton from '../skeleton/CardSkeleton.svelte';
 
+	export let data: IExtension[];
 	export let handleLoadMore: (e: any) => void;
 	export let loadMoreEmpty: boolean = false;
-	export let data: IExtension[];
 
+	/**
+	 * The initialLoading is the loading when the
+	 * components is first mounted, and it only run once.
+	 **/
 	export let initialLoading: boolean = false;
+	/**
+	 * The subsequent loading triggered by
+	 * the user who want to load more extensions.
+	 **/
 	export let loadLoading: boolean = false;
 
-	// search input value
 	let searchInput: string;
 
 	function handleKeyUp(e: KeyboardEvent) {
@@ -33,8 +40,8 @@
 
 	<section class="flex flex-col items-center justify-evenly gap-8 px-2 md:flex-row">
 		<div class="flex-cols mb-12 flex w-full flex-wrap gap-4 px-2 pb-20 md:flex-row lg:mt-4">
+			<!-- LOADING SKELETON -->
 			{#if initialLoading}
-				<!-- LOADING SKELETON -->
 				{#each [...new Array(3)] as _v}
 					<CardSkeleton />
 				{/each}
