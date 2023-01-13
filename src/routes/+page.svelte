@@ -1,29 +1,25 @@
 <script lang="ts">
-	import { drawerData } from '../data/drawerData';
-	import MainDrawer from '../components/drawers/MainDrawer.svelte';
 	import BottomDrawer from '../components/drawers/BottomDrawer.svelte';
-
-	// the id of the active drawer
-	let activeDrawer = 0;
-
-	// handle drawer change when user click on different items.
-	function handleDrawerChange(i: number) {
-		activeDrawer = i;
-	}
+	import IndexHeader from '../components/header/IndexHeader.svelte';
+	import IndexBody from '../components/body/IndexBody.svelte';
+	import MainDrawer from '../components/drawers/MainDrawer.svelte';
 </script>
 
 <svelte:head>
 	<title>Binder</title>
 </svelte:head>
 
-<!-- DRAWER WRAPPER -->
-<MainDrawer activeIndex={activeDrawer} {handleDrawerChange}>
+<MainDrawer activeIndex={0}>
 	<!-- HEADER -->
-	<svelte:component this={drawerData[activeDrawer].header} />
+	<header>
+		<IndexHeader />
+	</header>
 
-	<!-- DYNAMIC COMPONENT BODY -->
-	<svelte:component this={drawerData[activeDrawer].component} />
+	<!-- BODY -->
+	<main>
+		<IndexBody />
+	</main>
 </MainDrawer>
 
 <!-- BOTTOM DRAWER (MOBILE ONLY) -->
-<BottomDrawer activeIndex={activeDrawer} {handleDrawerChange} />
+<BottomDrawer activeIndex={0} />

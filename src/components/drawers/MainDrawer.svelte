@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { drawerData } from '../../data/drawerData';
 
+	// The current active index of the item,
+	// this number is passed by the parent.
 	export let activeIndex: number;
-	export let handleDrawerChange: (i: number) => void;
 </script>
 
 <div class="drawer">
@@ -23,7 +24,7 @@
 					<label
 						for="left-drawer"
 						aria-label="Close Drawer"
-						class="drawer-button btn btn-outline btn-circle btn-sm"
+						class="btn-outline drawer-button btn-sm btn-circle btn"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -52,10 +53,7 @@
 			<div class="py-8">
 				{#each drawerData as v (v.id)}
 					<li class="py-1">
-						<button
-							on:click={() => handleDrawerChange(v.id)}
-							class={activeIndex === v.id ? 'active' : ''}>{v.title}</button
-						>
+						<a href={v.href} class={activeIndex === v.id ? 'active' : ''}>{v.title}</a>
 					</li>
 				{/each}
 			</div>
