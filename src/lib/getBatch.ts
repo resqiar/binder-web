@@ -12,6 +12,6 @@ export async function getBatch(skip: number) {
 		const result: IExtension[] = await response.json();
 		return result;
 	} catch (error) {
-		throw new Error(`Failed to Get Batch: ${error}`);
+		throw new Error(error as string);
 	}
 }
