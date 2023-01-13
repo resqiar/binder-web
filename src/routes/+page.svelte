@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getBatch } from '../lib/getBatch';
+	import { getBatch } from '$lib/getBatch';
+	import { loadMoreExt } from '$lib/loadMore';
 	import type { IExtension } from '../types/extension';
 	import BottomDrawer from '../components/drawers/BottomDrawer.svelte';
 	import IndexHeader from '../components/header/IndexHeader.svelte';
@@ -26,29 +27,23 @@
 	});
 
 	async function handleLoadMore() {
-		const tempPage = (page + 1) * 9;
-
-		loadLoading = true;
 		errorMessage = undefined;
+		loadLoading = true;
 
-		try {
-			const result: IExtension[] = await getBatch(tempPage);
+		await loadMoreExt({
+			page: page,
+			emptyCB: () => (full = true),
+			successCB: (result: IExtension[]) => {
+				result.forEach((value) => {
+					data = [...data, value];
+				});
 
-			if (result.length === 0) {
-				loadLoading = false;
-				return (full = true);
-			}
+				page++;
+			},
+			errorCB: (error: string) => (errorMessage = error as string)
+		});
 
-			result.forEach((value) => {
-				data = [...data, value];
-			});
-
-			loadLoading = false;
-			page++;
-		} catch (error) {
-			loadLoading = false;
-			errorMessage = error as string;
-		}
+		loadLoading = false;
 	}
 </script>
 
