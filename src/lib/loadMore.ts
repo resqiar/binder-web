@@ -31,16 +31,25 @@ interface ILoadMoreProps {
 }
 
 export async function loadMoreExt(props: ILoadMoreProps) {
-	const tempPage = (props.page + 1) * 9;
+	const formula = (props.page + 1) * 9;
 
 	try {
-		const result: IExtension[] = await getBatch(tempPage);
+		const result: IExtension[] = await getBatch(formula);
 
-		if (result.length === 0) {
+		if (!result.length) {
 			return props.emptyCB();
 		}
 
 		props.successCB(result);
+
+		/**
+		 * If the result is less than 9,
+		 * meaning that the next batch is not exist since-
+		 * the items will never overlap the default boundary (9).
+		 **/
+		if (result.length < 9) {
+			props.emptyCB();
+		}
 	} catch (error) {
 		props.errorCB(error as string);
 	}

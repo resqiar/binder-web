@@ -10,12 +10,6 @@
 
 	let data: IExtension[] = [];
 
-	/**
-	 * Page here is the state to keep track
-	 * of the current page of exts. The initial extensions
-	 * only contains 9 items, therefore this page state is
-	 * the paginations of the extensions took place.
-	 **/
 	let page: number = 0;
 
 	/**
@@ -48,6 +42,8 @@
 	});
 
 	async function handleLoadMore() {
+		if (loadLoading) return;
+
 		errorMessage = undefined;
 		loadLoading = true;
 
