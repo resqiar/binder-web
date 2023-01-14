@@ -1,6 +1,6 @@
 import type { IExtension } from '../types/extension';
 
-export async function getBatch(skip: number) {
+export async function getBatch(skip: number = 0) {
 	try {
 		const url = `${import.meta.env.VITE_SERVER}/ext?skip=${skip}`;
 		const response = await fetch(url);
