@@ -1,22 +1,14 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { getBatch } from '$lib/getBatch';
 	import { loadMoreExt } from '$lib/loadMore';
-	import type { PageData } from './$types';
 	import type { IExtension } from '../types/extension';
 	import BottomDrawer from '../components/drawers/BottomDrawer.svelte';
 	import IndexHeader from '../components/header/IndexHeader.svelte';
 	import IndexBody from '../components/body/IndexBody.svelte';
 	import MainDrawer from '../components/drawers/MainDrawer.svelte';
 
-	/**
-	 * This variable holds the Extensions data
-	 * that is coming from the SSR process.
-	 * It contains either exts or error.
-	 *
-	 * @see /+page.server.ts
-	 **/
-	export let data: PageData;
-
-	let exts: IExtension[] = data.exts;
+	let data: IExtension[] = [];
 
 	let page: number = 0;
 
@@ -28,12 +20,26 @@
 	let loadMoreEmpty: boolean = false;
 
 	/**
+	 * The initialLoading is the loading when the
+	 * components is first mounted, and it only run once.
+	 **/
+	let initialLoading: boolean = true;
+	/**
 	 * The subsequent loading triggered by
 	 * the user who want to load more extensions.
 	 **/
 	let loadLoading: boolean = false;
 
-	let errorMessage: string | undefined = data.error;
+	let errorMessage: string | undefined;
+
+	onMount(async () => {
+		try {
+			data = await getBatch(page);
+		} catch (error) {
+			errorMessage = error as string;
+		}
+		initialLoading = false;
+	});
 
 	async function handleLoadMore() {
 		if (loadLoading) return;
@@ -56,7 +62,7 @@
 			emptyCB: () => (loadMoreEmpty = true),
 			successCB: (result: IExtension[]) => {
 				result.forEach((value) => {
-					exts = [...exts, value];
+					data = [...data, value];
 				});
 
 				page++;
@@ -80,7 +86,7 @@
 
 	<!-- BODY -->
 	<main>
-		<IndexBody data={exts} {loadLoading} {loadMoreEmpty} {handleLoadMore} />
+		<IndexBody {data} {initialLoading} {loadLoading} {loadMoreEmpty} {handleLoadMore} />
 	</main>
 
 	<!-- DEDICATED ERROR ALERT -->
