@@ -2,6 +2,7 @@
 	import { WEB_SEMVER } from '../../data/version';
 
 	import Logo from '../brand/Logo.svelte';
+	import AuthIcon from '../icons/AuthIcon.svelte';
 	import GithubIcon from '../icons/GithubIcon.svelte';
 </script>
 
@@ -54,12 +55,23 @@
 				tabindex="-1"
 				class="dropdown-content menu rounded-box w-52 bg-base-100 shadow-2xl"
 			>
+				<!-- LOGIN / REGISTER -->
+				<li>
+					<a href="/auth">
+						<AuthIcon />
+						Login</a
+					>
+				</li>
+
+				<!-- GITHUB LINK -->
 				<li>
 					<a href="https://github.com/resqiar/binder" target="_blank" rel="noreferrer">
 						<GithubIcon />
 						GitHub</a
 					>
 				</li>
+
+				<!-- WEB VERSION -->
 				<li><p>Web: v{WEB_SEMVER}</p></li>
 			</ul>
 		</div>
