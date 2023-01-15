@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import Cookies from 'js-cookie';
+	import { issueKeyCookie } from '$lib/issueKeyCookie';
+	import type { PageServerData } from './$types';
+
+	// Data coming from SSR
+	export let data: PageServerData;
 
 	let status: 'login' | 'register' = 'login';
 
@@ -40,8 +44,10 @@
 
 		// Call function to issue the token that coming from
 		// the server and save them to the cookie.
-		issueTokenCookie(response.key);
-		goto('/');
+		issueKeyCookie(response.key);
+
+		const redirect = data.redirectUrl ? data.redirectUrl : '/';
+		goto(redirect);
 	}
 
 	async function doRegister() {
@@ -68,17 +74,11 @@
 		}
 
 		// Issue a cookie
-		issueTokenCookie(response.key);
-		goto('/');
-	}
+		issueKeyCookie(response.key);
 
-	function issueTokenCookie(token: string) {
-		// Issue a cookie with the value of token
-		// coming from the server.
-		Cookies.set('key', token, {
-			expires: 7,
-			secure: true
-		});
+		// Redirect back based on specified url query parameter
+		const redirect = data.redirectUrl ? data.redirectUrl : '/';
+		goto(redirect);
 	}
 </script>
 
