@@ -72,7 +72,11 @@
 				</li>
 
 				<!-- WEB VERSION -->
-				<li><p>Web: v{WEB_SEMVER}</p></li>
+				<li>
+					<a href="https://github.com/resqiar/binder/releases" target="_blank" rel="noreferrer">
+						<p>Web: v{WEB_SEMVER}</p>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>
