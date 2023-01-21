@@ -12,6 +12,7 @@
     "format": "prettier --write --plugin-search-dir=. ."
   },
   "devDependencies": {
+    "@playwright/test": "^1.29.2",
     "@sveltejs/adapter-vercel": "1.0.1",
     "@sveltejs/kit": "1.0.0",
     "@tailwindcss/line-clamp": "0.4.2",
