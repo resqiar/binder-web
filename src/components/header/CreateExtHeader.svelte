@@ -10,6 +10,7 @@
 	} from '../../stores/extStore';
 	import ImageKit from 'imagekit-javascript';
 	import Logo from '../brand/Logo.svelte';
+	import Cookies from 'js-cookie';
 
 	let title: string | undefined;
 	let desc: string | undefined;
@@ -86,7 +87,8 @@
 			const response = await fetch(createExtUrl, {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${Cookies.get('key')}`
 				},
 				body: JSON.stringify({
 					title: title,

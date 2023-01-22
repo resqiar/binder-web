@@ -11,6 +11,7 @@
 	import type { DropzoneFile } from '../../types/dropzone';
 	import ImageKit from 'imagekit-javascript';
 	import Logo from '../brand/Logo.svelte';
+	import Cookies from 'js-cookie';
 
 	let id: number | undefined;
 	let title: string | undefined;
@@ -88,7 +89,8 @@
 			const response = await fetch(updateExtUrl, {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${Cookies.get('key')}`
 				},
 				body: JSON.stringify({
 					title: title,
