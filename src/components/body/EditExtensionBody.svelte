@@ -175,7 +175,7 @@
 
 					<!-- Code Input -->
 					<label class="label px-2" for="code-input">
-						<CodeEditor bind:value={code} height="600px" keybindings={null} />
+						<CodeEditor bind:value={code} height="600px" keybindings="vim" />
 					</label>
 				</div>
 			</div>
