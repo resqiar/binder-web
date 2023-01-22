@@ -105,7 +105,7 @@
 		if (keybindings === 'vim') {
 			editor.setKeyboardHandler('ace/keyboard/' + keybindings);
 		} else {
-			editor.setKeyboardHandler('ace/keyboard/');
+			editor.setKeyboardHandler('');
 		}
 	}
 
