@@ -29,7 +29,7 @@
 	// code language [js, ts, c++]
 	let lang: string;
 
-	let enableVim: boolean = false;
+	let enableVim: boolean = true;
 
 	function handleFilesSelect(e: CustomEvent) {
 		const { acceptedFiles } = e.detail;
