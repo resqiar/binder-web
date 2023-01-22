@@ -143,9 +143,6 @@
 	</div>
 </main>
 
-<!-- IMPORTANT!: MUST BE CHECK IF NOT EQUAL TO NULL -->
-<!-- SHORTCUT LIKE if !code WONT WORK SINCE IT SPECIFICALLY TARGET NULL. -->
-<!-- OTHERWISE, THE EDITOR WILL DISAPPEAR IF THE USER MANUALLY "EMPTYING" THE FIELD -->
 <!-- CODE EDITOR SECTION -->
 <div class="mt-4 mb-8 md:mx-8">
 	<div class="flex flex-col md:flex-row">

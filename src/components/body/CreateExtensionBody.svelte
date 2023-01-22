@@ -29,6 +29,8 @@
 	// code language [js, ts, c++]
 	let lang: string;
 
+	let enableVim: boolean = false;
+
 	function handleFilesSelect(e: CustomEvent) {
 		const { acceptedFiles } = e.detail;
 		accepted = acceptedFiles;
@@ -92,14 +94,28 @@
 						<span class="label-text">Live Code</span>
 					</label>
 
-					<!-- SELECT LANGUAGE -->
-					<div class="my-2">
-						<SelectLangInput bind:lang />
+					<div class="flex items-center gap-4">
+						<!-- SELECT LANGUAGE -->
+						<div class="my-2">
+							<SelectLangInput bind:lang />
+						</div>
+
+						<!-- ENABLE VIM -->
+						<div class="form-control">
+							<label class="label flex cursor-pointer flex-row gap-2">
+								<span class="label-text text-xs md:text-base">Vim</span>
+								<input
+									type="checkbox"
+									bind:checked={enableVim}
+									class="checkbox-accent checkbox checkbox-sm md:checkbox-md"
+								/>
+							</label>
+						</div>
 					</div>
 
 					<!-- Code Input -->
 					<label class="label px-2" for="code-input">
-						<CodeEditor bind:value={code} height="600px" keybindings="vim" />
+						<CodeEditor bind:value={code} height="600px" keybindings={enableVim ? 'vim' : null} />
 					</label>
 				</div>
 			</div>
