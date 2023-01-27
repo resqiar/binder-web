@@ -55,9 +55,11 @@
 	}
 </script>
 
-<main class="flex flex-col-reverse items-center justify-center px-8 lg:flex-row-reverse lg:gap-12">
+<main
+	class="flex flex-col-reverse items-center justify-center lg:flex-row-reverse lg:gap-12 lg:px-8"
+>
 	<div class="flex flex-col items-center">
-		<div class="card mb-8 mr-8 h-min w-full bg-base-100 shadow-2xl lg:mt-10 lg:w-[200px]">
+		<div class="card mb-8 h-min w-full bg-base-100 shadow-2xl md:mr-8 lg:mt-10 lg:w-[200px]">
 			<div class="card-body flex items-center justify-center">
 				<img
 					src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&ecc=H&data=${data.id}`}
@@ -100,13 +102,15 @@
 		{/if}
 	</div>
 
-	<div class="card my-4 ml-8 w-full rounded-xl bg-base-100 shadow-2xl lg:mt-10">
+	<div
+		class="card mb-4 w-full rounded-t-none bg-base-100 pb-6 shadow-2xl md:my-4 md:rounded-xl lg:ml-8 lg:mt-10"
+	>
 		{#if data.image_url}
 			<div class="relative">
 				<img
 					src={data.image_url}
 					alt={data.title}
-					class="max-h-[300px] w-full rounded-t-xl object-cover"
+					class="max-h-[300px] w-full object-cover md:rounded-t-xl"
 				/>
 
 				<label
