@@ -121,14 +121,14 @@
 
 			<!-- ZOOM IMAGE MODAL -->
 			<input type="checkbox" id="my-modal" class="modal-toggle" />
-			<div class="modal">
-				<div class="modal-box relative p-0">
+			<label for="my-modal" class="modal h-full w-full">
+				<div class="modal-box relative max-w-full p-0">
 					<label for="my-modal" class="btn-sm btn-circle btn absolute right-2 top-2 shadow-xl"
 						>✕</label
 					>
-					<img src={data.image_url} alt="fullscreen media" />
+					<img src={data.image_url} class="h-full w-full" alt="fullscreen media" />
 				</div>
-			</div>
+			</label>
 		{/if}
 
 		<!-- YOUTUBE PLAYER -->
