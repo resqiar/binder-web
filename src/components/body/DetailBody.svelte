@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import type { IExtDetail } from 'src/types/detail-ext';
-	import YtPlayer from '../misc/YTPlayer.svelte';
+	import sanitizeHtml from 'sanitize-html';
 	import getYouTubeID from 'get-youtube-id';
+	import YtPlayer from '../misc/YTPlayer.svelte';
 	import CodeEditor from '../code-editor/CodeEditor.svelte';
 	import SelectLangInput from '../input/SelectLangInput.svelte';
 
@@ -25,6 +26,33 @@
 	let enableVim: boolean = true;
 	let loading: boolean = false;
 	let result: string = ''; // result from server
+
+	/**
+	 * This line of code is using the sanitizeHtml function to
+	 * sanitize the value of the 'description'.
+	 * This helps in preventing XSS attacks by removing any potentially
+	 * harmful HTML code before it is rendered on the page.
+	 **/
+	let purifiedDesc = sanitizeHtml(data.description ?? '');
+
+	/**
+	 * Regular Expression for matching URLs inside description
+	 *
+	 * http: matches the characters "http".
+	 * s?: matches the character "s" one time. This makes the "s" optional. Allowing http / https.
+	 * :\/\/: matches the characters "://" literally.
+	 * [^\s]: matches any character that is not a whitespace character.
+	 * +: matches one or more of the preceding character or group.
+	 * /g : find all matches rather than stopping after the first match.
+	 *
+	 **/
+	let urlRegex = /(https?:\/\/[^\s]+)/g;
+
+	//Replace all matches URLs with anchor tags
+	purifiedDesc = purifiedDesc.replace(
+		urlRegex,
+		'<a href="$1" class="link link-hover link-warning font-bold" target="_blank" rel="noreferrer noopener">$1</a>'
+	);
 
 	async function requestResult() {
 		if (!code || !lang) return;
@@ -144,7 +172,12 @@
 		<div class="card-body">
 			<span class="badge font-bold">{data.id}</span>
 			<h2 class="card-title">{data.title}</h2>
-			<p class="whitespace-pre-wrap">{data.description ?? 'No description'}</p>
+
+			<div class="whitespace-pre-wrap">
+				<!-- SET INNER HTML FOR DESCRIPTION -->
+				<!-- THE VALUE ALREADY SANITIZED BEFORE SO IT IS SAFE FROM XSS -->
+				{@html purifiedDesc ?? 'No description'}
+			</div>
 		</div>
 	</div>
 </main>
