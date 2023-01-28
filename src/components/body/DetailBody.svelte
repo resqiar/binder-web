@@ -39,13 +39,13 @@
 	 * Regular Expression for matching URLs inside description
 	 *
 	 * This regular expression is used to match URLs in a string.
-	 * It matches "http" or "https" followed by "://" and one or more non-whitespace, non-( characters,
+	 * It matches "http" or "https" followed by "://" and one or more non-whitespace,
 	 * then one or more non-whitespace, non-) characters and capture it in a group.
 	 * The "g" flag is used to perform a global search,
 	 * and the "i" flag is used to perform a case-insensitive search.
 	 *
 	 **/
-	let urlRegex = /https?:\/\/[^\s(]+[^\s)]+/gi;
+	let urlRegex = /(https?:\/\/[^\s)]+)/g;
 
 	//Replace all matches URLs with anchor tags
 	purifiedDesc = purifiedDesc.replace(
