@@ -49,7 +49,7 @@
 	 *
 	 **/
 	let urlRegex =
-		/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=][^\s\(\)]{1,256}\.[a-zA-Z0-9][^\s\(\)]{1,6}\b[-a-zA-Z0-9@:%_+.~#?&//=][^\s\(\)]*/gi;
+		/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=][^\s(]{1,256}\.[a-zA-Z0-9][^\s)]{1,6}\b[-a-zA-Z0-9@:%_+.~#?&//=][^\s)]*/gi;
 
 	//Replace all matches URLs with anchor tags
 	purifiedDesc = purifiedDesc.replace(
