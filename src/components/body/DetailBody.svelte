@@ -121,12 +121,14 @@
 
 			<!-- ZOOM IMAGE MODAL -->
 			<input type="checkbox" id="my-modal" class="modal-toggle" />
-			<label for="my-modal" class="modal h-full w-full">
-				<div class="modal-box relative max-w-full p-0">
-					<label for="my-modal" class="btn-sm btn-circle btn absolute right-2 top-2 shadow-xl"
+			<label for="my-modal" class="modal h-full w-full backdrop-blur-md">
+				<div class="modal-box relative max-h-full max-w-full p-0 shadow-2xl lg:h-[90%] lg:w-[95%]">
+					<label for="my-modal" class="btn-sm btn-circle btn absolute right-2 top-2 shadow-2xl"
 						>✕</label
 					>
-					<img src={data.image_url} class="h-full w-full" alt="fullscreen media" />
+					<div class="flex h-full w-full justify-center bg-black">
+						<img src={data.image_url} class="object-cover" alt="fullscreen media" />
+					</div>
 				</div>
 			</label>
 		{/if}
