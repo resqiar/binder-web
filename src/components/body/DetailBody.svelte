@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import type { IExtDetail } from 'src/types/detail-ext';
-	import YtPlayer from '../misc/YTPlayer.svelte';
+	import sanitizeHtml from 'sanitize-html';
 	import getYouTubeID from 'get-youtube-id';
+	import YtPlayer from '../misc/YTPlayer.svelte';
 	import CodeEditor from '../code-editor/CodeEditor.svelte';
 	import SelectLangInput from '../input/SelectLangInput.svelte';
 
@@ -25,6 +26,35 @@
 	let enableVim: boolean = true;
 	let loading: boolean = false;
 	let result: string = ''; // result from server
+
+	/**
+	 * This line of code is using the sanitizeHtml function to
+	 * sanitize the value of the 'description'.
+	 * This helps in preventing XSS attacks by removing any potentially
+	 * harmful HTML code before it is rendered on the page.
+	 **/
+	let purifiedDesc = sanitizeHtml(data.description ?? '');
+
+	/**
+	 * Regular Expression for matching URLs inside description
+	 *
+	 * (https?:\/\/) : Matches the string "http://" or "https://"
+	 * (www\.)? : Matches the string "www." if it exists, making the URL match www and non-www urls
+	 * [-a-zA-Z0-9@:%._\+~#=]{1,256} : Matches 1 to 256 characters that are valid in a URL.
+	 * \.[a-zA-Z0-9()]{1,6} : Matches a period followed by 1 to 6 characters that are valid in a domain name.
+	 * \b : Asserts position at a word boundary (^\w|\w$|\W\w|\w\W)
+	 * ([-a-zA-Z0-9()@:%_\+.~#?&//=]*) : Matches zero or more characters that are valid in a URL.
+	 * gi : Global and case-insensitive matching
+	 *
+	 **/
+	let urlRegex =
+		/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*))/gi;
+
+	//Replace all matches URLs with anchor tags
+	purifiedDesc = purifiedDesc.replace(
+		urlRegex,
+		'<a href="$1" class="link link-hover link-warning font-bold" target="_blank" rel="noreferrer noopener">$1</a>'
+	);
 
 	async function requestResult() {
 		if (!code || !lang) return;
@@ -121,12 +151,14 @@
 
 			<!-- ZOOM IMAGE MODAL -->
 			<input type="checkbox" id="my-modal" class="modal-toggle" />
-			<label for="my-modal" class="modal h-full w-full">
-				<div class="modal-box relative max-w-full p-0">
-					<label for="my-modal" class="btn-sm btn-circle btn absolute right-2 top-2 shadow-xl"
+			<label for="my-modal" class="modal h-full w-full backdrop-blur-md">
+				<div class="modal-box relative max-h-full max-w-full p-0 shadow-2xl lg:h-[90%] lg:w-[95%]">
+					<label for="my-modal" class="btn-sm btn-circle btn absolute right-2 top-2 shadow-2xl"
 						>✕</label
 					>
-					<img src={data.image_url} class="h-full w-full" alt="fullscreen media" />
+					<div class="flex h-full w-full justify-center bg-black">
+						<img src={data.image_url} class="object-cover" alt="fullscreen media" />
+					</div>
 				</div>
 			</label>
 		{/if}
@@ -142,7 +174,12 @@
 		<div class="card-body">
 			<span class="badge font-bold">{data.id}</span>
 			<h2 class="card-title">{data.title}</h2>
-			<p class="whitespace-pre-wrap">{data.description ?? 'No description'}</p>
+
+			<div class="whitespace-pre-wrap">
+				<!-- SET INNER HTML FOR DESCRIPTION -->
+				<!-- THE VALUE ALREADY SANITIZED BEFORE SO IT IS SAFE FROM XSS -->
+				{@html purifiedDesc ?? 'No description'}
+			</div>
 		</div>
 	</div>
 </main>
