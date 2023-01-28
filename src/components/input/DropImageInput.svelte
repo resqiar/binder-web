@@ -72,7 +72,7 @@
 		<Dropzone
 			id="drag-image-input"
 			containerClasses="cursor-pointer"
-			accept="image/png,image/jpg,image/jpeg"
+			accept="image/png,image/jpg,image/jpeg,image/gif"
 			multiple={false}
 			on:drop
 		/>
