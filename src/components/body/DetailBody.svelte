@@ -38,18 +38,14 @@
 	/**
 	 * Regular Expression for matching URLs inside description
 	 *
-	 * (https?:\/\/) : Matches the string "http://" or "https://"
-	 * (www\.)? : Matches the string "www." if it exists, making the URL match www and non-www urls
-	 * [-a-zA-Z0-9@:%._\+~#=]{1,256} : Matches 1 to 256 characters that are valid in a URL.
-	 * \.[a-zA-Z0-9()]{1,6} : Matches a period followed by 1 to 6 characters that are valid in a domain name.
-	 * \b : Asserts position at a word boundary (^\w|\w$|\W\w|\w\W)
-	 * ([-a-zA-Z0-9()@:%_\+.~#?&//=]*) : Matches zero or more characters that are valid in a URL.
-	 * gi : Global and case-insensitive matching
-	 * This regex exclude parentheses.
+	 * This regular expression is used to match URLs in a string.
+	 * It matches "http" or "https" followed by "://" and one or more non-whitespace, non-( characters,
+	 * then one or more non-whitespace, non-) characters and capture it in a group.
+	 * The "g" flag is used to perform a global search,
+	 * and the "i" flag is used to perform a case-insensitive search.
 	 *
 	 **/
-	let urlRegex =
-		/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=][^\s(]{1,256}\.[a-zA-Z0-9][^\s)]{1,6}\b[-a-zA-Z0-9@:%_+.~#?&//=][^\s)]*/gi;
+	let urlRegex = /https?:\/\/[^\s(]+[^\s)]+/gi;
 
 	//Replace all matches URLs with anchor tags
 	purifiedDesc = purifiedDesc.replace(
