@@ -45,10 +45,11 @@
 	 * \b : Asserts position at a word boundary (^\w|\w$|\W\w|\w\W)
 	 * ([-a-zA-Z0-9()@:%_\+.~#?&//=]*) : Matches zero or more characters that are valid in a URL.
 	 * gi : Global and case-insensitive matching
+	 * This regex exclude parentheses.
 	 *
 	 **/
 	let urlRegex =
-		/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*))/gi;
+		/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=][^\s\(\)]{1,256}\.[a-zA-Z0-9][^\s\(\)]{1,6}\b[-a-zA-Z0-9@:%_+.~#?&//=][^\s\(\)]*/gi;
 
 	//Replace all matches URLs with anchor tags
 	purifiedDesc = purifiedDesc.replace(
