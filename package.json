@@ -14,7 +14,7 @@
   "devDependencies": {
     "@sveltejs/adapter-vercel": "1.0.1",
     "@sveltejs/kit": "1.0.0",
-    "@tailwindcss/line-clamp": "0.4.2",
+    "@tailwindcss/line-clamp": "0.4.4",
     "@types/js-cookie": "^3.0.2",
     "@types/lodash.debounce": "4.0.7",
     "@types/nprogress": "0.2.0",
